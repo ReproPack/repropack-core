@@ -1,0 +1,20 @@
+name: documentation-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f docs/SPECIFICATION.md
+          test -f PROJECT_STATE.md
+          test -f ROADMAP.md
+          ! grep -R -n -E 'TODO|TBD|coming soon' README.md docs PROJECT_STATE.md
