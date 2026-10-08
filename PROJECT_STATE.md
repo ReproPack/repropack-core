@@ -2,10 +2,10 @@
 
 - Current phase: Phase 0 — foundation and documentation
 - Current repository: repropack-core (coordination), with synchronized documentation in TypeScript and Python repositories
-- Phase status: complete locally after audit; initial commits and remote verification pending in this execution
+- Phase status: complete; foundation committed and pushed after local audit
 - Last completed phase: none before Phase 0
 - Current objective: establish a truthful, secure, language-neutral project foundation
-- Completed work: repositories created and cloned; charter, requirements, architecture, proposed specification, security model, conformance model, roadmap, release process, and contribution policies documented
+- Completed work: repositories created and cloned; charter, requirements, architecture, proposed specification, security model, conformance model, roadmap, release process, and contribution policies documented; Phase 0 commit verified on GitHub
 - Remaining work: Phase 1 specification review and freeze; all implementation phases
 - Known blockers: Python executable inaccessible in the current Windows session; npm/pnpm PowerShell shims blocked by execution policy
 - Known risks: ZIP/JSON design and redaction semantics are proposals, not implemented or validated
