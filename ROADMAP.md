@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 11 complete; Phase 12 not started**.
+Current overall status: **Phase 12 complete; Phase 13 not started**.
 
 ## Phase register
 
@@ -28,7 +28,7 @@ Current overall status: **Phase 11 complete; Phase 12 not started**.
 | 9 — Security hardening | **Complete** | All | Phase 8 | Malformed-input and resource-limit audit passes |
 | 10 — Usability | **Complete** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
 | 11 — CI and packaging | **Complete** | All | Phase 9 | Real CI, package builds, and validation succeed |
-| 12 — Documentation and examples | **Not started** | All | Phase 10 | Fresh-user workflow works from clean environments |
+| 12 — Documentation and examples | **Complete** | All | Phase 10 | Fresh-user workflow works from clean environments |
 | 13 — Contributor readiness | **Not started** | All | Phase 11 | External contribution path is usable and tested |
 | 14 — v0.1 release | **Not started** | All | Phases 8–13 | Final audit and release checklist pass |
 | 15 — Reproduction integrations | **Deferred** | All | v0.1 | Revisit after user feedback and a separate integration threat model |
@@ -122,9 +122,9 @@ Current overall status: **Phase 11 complete; Phase 12 not started**.
 
 ### Phase 12 — Documentation and examples
 
-**Status:** Not started. **Depends on:** Phase 10.
+**Status:** Complete. **Depends on:** Phase 10. **Evidence:** Real minimal example bundle, tutorial, format examples, troubleshooting, migration guidance, cross-repository links, and clean CLI workflow validation.
 
-**Tasks:** Add real demo bundles, tutorials, troubleshooting, format examples, migration guidance, and cross-repository links. **Exit:** A clean-environment user can create, inspect, verify, and safely extract a sample.
+**Tasks:** Add real demo bundles, tutorials, troubleshooting, format examples, migration guidance, and cross-repository links. **Exit:** A clean-environment user can create, inspect, verify, and safely extract a sample. Met.
 
 ### Phase 13 — Contributor readiness
 

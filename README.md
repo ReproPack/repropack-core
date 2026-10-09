@@ -4,7 +4,7 @@ ReproPack is a language-neutral, inspectable evidence bundle for software failur
 
 ## Current status
 
-Phase 5 is complete and Phase 6 is next. The v0.1 manifest contract, schema, semantic fixtures, Rust typed model, ZIP operations, safe extraction, initial CLI, integrity verification, conservative redaction helpers, and catalog-driven Rust conformance runner are implemented; native TypeScript/Python interoperability and release readiness are not yet complete.
+Phase 12 is complete and Phase 13 is next. The v0.1 contract, three native implementations, interoperability, security hardening, stable CLI, CI/package validation, and fresh-user documentation are complete; contributor and release readiness remain.
 
 ## Repository map
 
@@ -15,6 +15,10 @@ Phase 5 is complete and Phase 6 is next. The v0.1 manifest contract, schema, sem
 - `PROJECT_STATE.md` — current verified state.
 
 The TypeScript and Python implementations do not depend on Rust at runtime.
+
+Start with the [tutorial](docs/TUTORIAL.md). See [format examples](docs/FORMAT_EXAMPLES.md), [troubleshooting](docs/TROUBLESHOOTING.md), and [migration guidance](docs/MIGRATION.md) for common workflows.
+
+Native implementations: [TypeScript](../repropack-typescript/README.md) and [Python](../repropack-python/README.md).
 
 ## Safety boundary
 
