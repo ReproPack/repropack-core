@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 8 complete; Phase 9 not started**.
+Current overall status: **Phase 9 complete; Phase 10 not started**.
 
 ## Phase register
 
@@ -25,7 +25,7 @@ Current overall status: **Phase 8 complete; Phase 9 not started**.
 | 6 — TypeScript implementation | **Complete** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
 | 7 — Python implementation | **Complete** | Python | Phases 1 and 5 | Native Python passes shared semantics |
 | 8 — Interoperability | **Complete** | All | Phases 6 and 7 | Required cross-language matrix passes |
-| 9 — Security hardening | **Not started** | All | Phase 8 | Malformed-input and resource-limit audit passes |
+| 9 — Security hardening | **Complete** | All | Phase 8 | Malformed-input and resource-limit audit passes |
 | 10 — Usability | **Not started** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
 | 11 — CI and packaging | **Not started** | All | Phase 9 | Real CI, package builds, and validation succeed |
 | 12 — Documentation and examples | **Not started** | All | Phase 10 | Fresh-user workflow works from clean environments |
@@ -104,9 +104,9 @@ Current overall status: **Phase 8 complete; Phase 9 not started**.
 
 ### Phase 9 — Security hardening
 
-**Status:** Not started. **Depends on:** Phase 8.
+**Status:** Complete. **Depends on:** Phase 8. **Evidence:** Threat matrix and residual-risk review in `docs/PHASE_9_REVIEW.md`, bounded malformed-input tests in all implementations, and passing cross-language regression checks.
 
-**Tasks:** Threat-model review and bounded tests for malformed archives, traversal, symlinks, special files, decompression bombs, oversized metadata/files, corrupted text, malicious metadata, permissions, and secret-capture risks. **Exit:** Each threat has mitigation and test evidence; no implementation executes content.
+**Tasks:** Threat-model review and bounded tests for malformed archives, traversal, symlinks, special files, decompression bombs, oversized metadata/files, corrupted text, malicious metadata, permissions, and secret-capture risks. **Exit:** Each threat has mitigation and test evidence; no implementation executes content. Met with residual memory-bounded streaming and heuristic-secret-detection risks documented.
 
 ### Phase 10 — CLI and SDK usability
 

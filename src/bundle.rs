@@ -404,6 +404,14 @@ mod tests {
     }
 
     #[test]
+    fn malformed_archive_is_rejected_without_content_use() {
+        assert!(matches!(
+            read_bundle(Cursor::new(b"not a zip".to_vec()), ReadLimits::default()),
+            Err(BundleError::Zip(_))
+        ));
+    }
+
+    #[test]
     fn extraction_is_verified_and_stays_below_destination() {
         let mut output = Cursor::new(Vec::new());
         output = create_bundle(output, &fixture_manifest(), &fixture_evidence()).unwrap();
