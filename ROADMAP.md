@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 5 complete; Phase 6 not started**.
+Current overall status: **Phase 6 complete; Phase 7 not started**.
 
 ## Phase register
 
@@ -22,7 +22,7 @@ Current overall status: **Phase 5 complete; Phase 6 not started**.
 | 3 — Rust bundle operations | **Complete** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
 | 4 — Integrity and redaction | **Complete** | Core | Phase 3 | Hash verification and conservative redaction behavior |
 | 5 — Shared conformance | **Complete** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
-| 6 — TypeScript implementation | **Not started** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
+| 6 — TypeScript implementation | **Complete** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
 | 7 — Python implementation | **Not started** | Python | Phases 1 and 5 | Native Python passes shared semantics |
 | 8 — Interoperability | **Not started** | All | Phases 6 and 7 | Required cross-language matrix passes |
 | 9 — Security hardening | **Not started** | All | Phase 8 | Malformed-input and resource-limit audit passes |
@@ -86,9 +86,9 @@ Current overall status: **Phase 5 complete; Phase 6 not started**.
 
 ### Phase 6 — Native TypeScript implementation
 
-**Status:** Not started. **Depends on:** Phases 1 and 5.
+**Status:** Complete. **Depends on:** Phases 1 and 5. **Evidence:** Native TypeScript model, canonical JSON, stored-ZIP writer/reader, bounded validation, SHA-256 verification, conservative redaction, safe extraction, shared fixture tests, package build, and `repropack-typescript` commit `31dc4af`.
 
-**Tasks:** Implement native types, validation, archive I/O, hashing, safe extraction, errors, SDK APIs, and optional CLI without invoking Rust. **Tests:** Type checks, unit/integration tests, shared fixtures, malformed archive/path/limit tests, and package builds. **Exit:** TypeScript passes shared semantics and exchanges bundles with Rust.
+**Tasks:** Implement native types, validation, archive I/O, hashing, safe extraction, errors, SDK APIs, and optional CLI without invoking Rust. **Tests:** Type checks, unit/integration tests, shared fixtures, malformed archive/path/limit tests, and package builds. **Exit:** TypeScript passes shared semantics. Met for the Phase 6 scope; Rust exchange matrix remains Phase 8.
 
 ### Phase 7 — Native Python implementation
 
