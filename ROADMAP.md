@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 10 complete; Phase 11 not started**.
+Current overall status: **Phase 11 complete; Phase 12 not started**.
 
 ## Phase register
 
@@ -27,7 +27,7 @@ Current overall status: **Phase 10 complete; Phase 11 not started**.
 | 8 — Interoperability | **Complete** | All | Phases 6 and 7 | Required cross-language matrix passes |
 | 9 — Security hardening | **Complete** | All | Phase 8 | Malformed-input and resource-limit audit passes |
 | 10 — Usability | **Complete** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
-| 11 — CI and packaging | **Not started** | All | Phase 9 | Real CI, package builds, and validation succeed |
+| 11 — CI and packaging | **Complete** | All | Phase 9 | Real CI, package builds, and validation succeed |
 | 12 — Documentation and examples | **Not started** | All | Phase 10 | Fresh-user workflow works from clean environments |
 | 13 — Contributor readiness | **Not started** | All | Phase 11 | External contribution path is usable and tested |
 | 14 — v0.1 release | **Not started** | All | Phases 8–13 | Final audit and release checklist pass |
@@ -116,9 +116,9 @@ Current overall status: **Phase 10 complete; Phase 11 not started**.
 
 ### Phase 11 — CI and packaging
 
-**Status:** Not started. **Depends on:** Phase 9.
+**Status:** Complete. **Depends on:** Phase 9. **Evidence:** Real Rust, TypeScript, and Python CI workflows, local validation, package checks, dependency audit, and `docs/PHASE_11_REVIEW.md`.
 
-**Tasks:** Add real Rust, TypeScript, and Python CI for formatting, linting, tests, conformance, builds, package validation, and dependency/security checks. **Exit:** CI runs real checks and package artifacts satisfy documented guarantees.
+**Tasks:** Add real Rust, TypeScript, and Python CI for formatting, linting, tests, conformance, builds, package validation, and dependency/security checks. **Exit:** CI runs real checks and package artifacts satisfy documented guarantees. Met.
 
 ### Phase 12 — Documentation and examples
 
