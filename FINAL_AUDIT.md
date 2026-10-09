@@ -51,10 +51,32 @@ The repository evidence supports a v0.1.0 release candidate. No code path execut
 
 The original local release snapshot contained a portability defect in `scripts/validate_phase1.mjs`: canonical `/` evidence paths were converted to `\` before `path.join`, causing the Ubuntu run `37865758652` to fail while resolving `minimal-valid/evidence/message.txt`. The correction keeps canonical paths unchanged and adds a host-OS regression test covering valid fixtures and the unsafe-path case.
 
-The Phase 8 interoperability helper now uses platform-neutral path components, supports explicit `REPROPACK_PYTHON`, `REPROPACK_PYTHON_PROJECT`, and `REPROPACK_TYPESCRIPT` overrides, and performs platform-aware Python discovery with an actionable missing-runtime error. Hosted Ubuntu and Windows CI coverage is configured but has not yet run for the corrected local commits.
+The Phase 8 interoperability helper now uses platform-neutral path components, supports explicit `REPROPACK_PYTHON`, `REPROPACK_PYTHON_PROJECT`, and `REPROPACK_TYPESCRIPT` overrides, and performs platform-aware Python discovery with an actionable missing-runtime error. Hosted Ubuntu and Windows CI coverage passed in run [37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).
 
-This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; the corrected work is untagged until the maintainer chooses the release-tag strategy. The local core branch remains ahead of `origin/main`, and no synchronization, package publication, or hosted release has occurred.
+This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; the corrected synchronized `main` is `08807da720abeca2d685993ee14978b36e499192`. No remote tags, package publication, or hosted release exists.
 
 ## Post-CI failure correction
 
-Hosted run `37918806077` established that the Windows checkout normalized canonical fixture evidence line endings, changing the byte length expected by the manifest. The repository now marks only `/conformance/fixtures/**/evidence/**` as `-text`; normal source-file line-ending behavior is unchanged. Existing Phase 1 validator tests cover fixture byte lengths, hashes, valid cases, and unsafe paths. The correction is local and requires a hosted Linux/Windows rerun; no hosted pass is claimed here.
+Hosted run `37918806077` established that the Windows checkout normalized canonical fixture evidence line endings, changing the byte length expected by the manifest. The repository now marks only `/conformance/fixtures/**/evidence/**` as `-text`; normal source-file line-ending behavior is unchanged. Existing Phase 1 validator tests cover fixture byte lengths, hashes, valid cases, and unsafe paths. The correction was validated by hosted Linux/Windows run [37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037); no publication is claimed here.
+
+## Final release preparation audit
+
+Verified facts:
+
+- Core, TypeScript, and Python main branches are clean and synchronized at the reviewed corrected commits.
+- All three hosted CI workflows passed, including Core's Ubuntu/Windows validator, Rust, and 12-path interoperability matrix.
+- Existing local v0.1.0 tags target pre-correction commits. GitHub reports no remote tags and no Releases for these repositories.
+- Core cargo publish dry-run passes. Python artifacts build and install in hosted CI. TypeScript package validation passes, but private: true remains set.
+
+Recommendations:
+
+- Preserve the old local tags and release corrected code as 0.1.1 if external consumption of the old tags cannot be ruled out.
+- Recreate v0.1.0 only if the owner explicitly confirms the old tags were never externally consumed and accepts the tag replacement risk.
+- Prepare coordinated release notes, exact artifact checksums, and GitHub Releases after the tag/version decision.
+
+Owner decisions required:
+
+- Coordinated version and tag strategy.
+- crates.io and PyPI publication approval and publisher/name confirmation.
+- Whether TypeScript becomes public; if yes, approval to change private: true and finalize package entry points/files.
+- GitHub Release creation and final artifact contents.
