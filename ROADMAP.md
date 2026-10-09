@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 13 complete; Phase 14 not started**.
+Current overall status: **Phase 14 complete; post-release work not started**.
 
 ## Phase register
 
@@ -30,7 +30,7 @@ Current overall status: **Phase 13 complete; Phase 14 not started**.
 | 11 — CI and packaging | **Complete** | All | Phase 9 | Real CI, package builds, and validation succeed |
 | 12 — Documentation and examples | **Complete** | All | Phase 10 | Fresh-user workflow works from clean environments |
 | 13 — Contributor readiness | **Complete** | All | Phase 11 | External contribution path is usable and tested |
-| 14 — v0.1 release | **Not started** | All | Phases 8–13 | Final audit and release checklist pass |
+| 14 — v0.1 release | **Complete** | All | Phases 8–13 | Final audit and release checklist pass |
 | 15 — Reproduction integrations | **Deferred** | All | v0.1 | Revisit after user feedback and a separate integration threat model |
 | 16 — CI/GitHub integrations | **Deferred** | All | v0.1 | Revisit after permissions, retention, and secret handling design |
 | 17 — Additional implementations | **Deferred** | Core plus ecosystem | v0.1 interoperability | New language proposal has maintainer and conformance plan |
@@ -134,9 +134,9 @@ Current overall status: **Phase 13 complete; Phase 14 not started**.
 
 ### Phase 14 — v0.1 release
 
-**Status:** Not started. **Depends on:** Phases 8–13.
+**Status:** Complete as a local release candidate. **Depends on:** Phases 8–13. **Evidence:** `FINAL_AUDIT.md`, `RELEASE_NOTES_v0.1.0.md`, completed release checklist, aligned `0.1.0` versions/changelogs, package artifacts, and local `v0.1.0` tags. External publication remains intentionally separate.
 
-**Tasks:** Freeze versions; complete `FINAL_AUDIT.md`; audit repositories, examples, CI, security, conformance, package builds, and documentation; prepare release notes and tags. **Exit:** Every P0 criterion has evidence and no unfinished feature is presented as complete.
+**Tasks:** Freeze versions; complete `FINAL_AUDIT.md`; audit repositories, examples, CI, security, conformance, package builds, and documentation; prepare release notes and tags. **Exit:** Every P0 criterion has evidence and no unfinished feature is presented as complete. Met for the local release candidate.
 
 ### Phase 15 — Reproduction integrations
 
