@@ -6,7 +6,7 @@
 
 ## Executive result
 
-The audit found and corrected confirmed P0/P1 implementation defects on dedicated local audit branches. The current local audit branches pass their focused tests, Rust checks, package validation, and the complete local Phase 8 matrix. They have not yet been pushed, so hosted CI and PR review for these fixes remain pending.
+The audit found and corrected confirmed P0/P1 implementation defects on dedicated audit branches. Local tests and the complete hosted audit-branch CI now pass. Review remains open in three PRs; no PR has been merged.
 
 The specification is genuinely language-neutral at the contract level, and the three current implementations agree on the supported semantic fixtures and the recorded six-path interoperability matrix. That evidence does not certify every malformed ZIP input, every future implementation, or deferred integrations.
 
@@ -16,9 +16,9 @@ GitHub identity was verified with `gh auth status` and `gh api user`: authentica
 
 | Repository | Base before audit | Audit branch | Working tree at audit start |
 |---|---|---|---|
-| `ReproPack/repropack-core` | `b3e5a27418d33009467ca601a5c3c38b70ed14da` | `audit/full-repropack-2026-10-09` | clean |
-| `ReproPack/repropack-typescript` | `9b146ecf3c07b0b9266bc5040d755953369ac413` | `audit/full-repropack-2026-10-09` | clean |
-| `ReproPack/repropack-python` | `26acc6d3d025e68f3545f9c51d1ed9420ba37752` | `audit/full-repropack-2026-10-09` | clean |
+| `ReproPack/repropack-core` | `b3e5a27418d33009467ca601a5c3c38b70ed14da` | `feb941121e007411307cce7b37ceb49d144fa822` | `audit/full-repropack-2026-10-09` |
+| `ReproPack/repropack-typescript` | `9b146ecf3c07b0b9266bc5040d755953369ac413` | `95e61fef87fdd913c3b8e5f77784a90c6b0c0905` | `audit/full-repropack-2026-10-09` |
+| `ReproPack/repropack-python` | `26acc6d3d025e68f3545f9c51d1ed9420ba37752` | `ab70d2b2ca11373f49148a223759990a04c53cdb` | `audit/full-repropack-2026-10-09` |
 
 The existing local `v0.1.0` tags were inspected and not moved, recreated, or pushed. No GitHub Releases were listed. All three repositories have empty issue and pull-request lists at audit time. The repositories are pinned, but the organization has no description, website, profile README, or repository topics/homepages. Branch-protection API checks returned 404 and are therefore unverified; no settings were changed.
 
@@ -57,7 +57,7 @@ All commands below ran locally on Windows 11-style PowerShell paths on the audit
 - Core: `cargo package --offline --locked --allow-dirty --no-verify` — passed.
 - Core Phase 8: `node scripts/phase8_interop.mjs` with explicit local TypeScript, Python project, and Python-runtime overrides — all 12 directed paths passed for `minimal-valid` and `redacted-valid`.
 
-The previously hosted base-commit evidence remains separate: TypeScript run `37925435775`, Python run `37925450600`, and Core run `37925467982` passed before these audit-branch changes. No hosted run has yet validated the audit branches.
+The audit-branch hosted evidence is now verified: [TypeScript run 37932693014](https://github.com/ReproPack/repropack-typescript/actions/runs/37932693014), [Python run 37932699454](https://github.com/ReproPack/repropack-python/actions/runs/37932699454), and [Core run 37932685340](https://github.com/ReproPack/repropack-core/actions/runs/37932685340) all passed. Core’s run passed Ubuntu and Windows documentation/Rust jobs plus Ubuntu and Windows interoperability. The earlier base-commit runs remain historical evidence only.
 
 ## Remaining security and conformance scope
 
@@ -77,7 +77,7 @@ No implementation executes bundle content. The current six directed paths agree 
 - Python wheel/sdist and installed-package checks must be rerun on the audit branch; PyPI name ownership/availability is not inferred from a 404 and publication requires owner approval.
 - TypeScript remains `private: true`; npm publication and entry-point/export decisions remain blocked on explicit owner approval.
 - Existing local `v0.1.0` tags remain historical pre-correction tags. Do not move them without explicit confirmation that they were never externally consumed. A corrected coordinated release should use an owner-approved new version/tag strategy.
-- Audit branches require hosted CI and independent review before merging. No direct `main` push, tag, GitHub Release, or package publication is authorized by this report.
+- Audit branches have passed hosted CI and require independent maintainer review before merging. No direct `main` push, tag, GitHub Release, or package publication is authorized by this report.
 
 ## Funding readiness
 
@@ -95,10 +95,10 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 
 ## Required manual GitHub actions
 
-1. Publish the three audit branches and open linked PRs after reviewing the diffs.
+1. Review the open [Core PR #1](https://github.com/ReproPack/repropack-core/pull/1), [TypeScript PR #1](https://github.com/ReproPack/repropack-typescript/pull/1), and [Python PR #1](https://github.com/ReproPack/repropack-python/pull/1).
 2. Confirm branch protection/rulesets through the GitHub UI or organization-admin API access.
 3. Add an organization description, profile README, repository topics, and homepages if desired; these are presentation decisions, not code fixes.
-4. Review and merge only after audit-branch hosted CI passes, including cross-branch checkout behavior.
+4. Merge only after maintainer review confirms the hosted CI evidence, including cross-branch checkout behavior.
 5. Decide the corrected release version/tag strategy and npm visibility/entry-point policy before creating releases or publishing packages.
 6. Build a real contributor backlog before pursuing Drips Wave.
 7. Establish verified Stellar/Soroban utility and adoption evidence before considering SCF.
@@ -108,5 +108,5 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 1. **Is the specification language-neutral?** Yes at the normative contract level: ZIP/JSON/schema/fixture semantics are independent of Rust, and the implementations do not invoke one another at runtime.
 2. **Do all three implementations satisfy the same supported contract?** For the current canonical fixtures and two valid interoperability fixtures, yes; local audit-branch tests and all 12 matrix paths pass. This is not a universal-input certification.
 3. **What remains untested or potentially failing?** The malformed ZIP/parser cases listed above, full hosted CI for audit branches, registry ownership, Drips app state, and organization rulesets.
-4. **What prevents a clean v0.1.1 release?** Audit-branch review/hosted CI, the old-tag decision, registry approvals and package-specific gates, and the TypeScript npm-publication decision.
+4. **What prevents a clean v0.1.1 release?** Audit-branch maintainer review/merge, the old-tag decision, registry approvals and package-specific gates, and the TypeScript npm-publication decision.
 5. **What must be fixed manually in GitHub?** Verify or configure rulesets, optionally improve organization/repository metadata, publish audit branches/open PRs, review/merge them, then perform separately approved release/tag/registry actions.

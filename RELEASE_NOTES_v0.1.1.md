@@ -21,7 +21,7 @@ The following hosted runs validate the corrected base commits that preceded the 
 - Python hosted CI for the synchronized pre-audit candidate: [run 37925450600](https://github.com/ReproPack/repropack-python/actions/runs/37925450600)
 - Core hosted CI, including Ubuntu/Windows validation and 12 interoperability paths, for the synchronized pre-audit candidate: [run 37925467982](https://github.com/ReproPack/repropack-core/actions/runs/37925467982)
 
-The audit branch `audit/full-repropack-2026-10-09` adds security and schema-validation corrections after those runs. Hosted CI for the audit branch remains pending; these links must not be read as validation of the audit fixes.
+The audit branch `audit/full-repropack-2026-10-09` adds security and schema-validation corrections after those runs. Its hosted CI passed in [run 37932685340](https://github.com/ReproPack/repropack-core/actions/runs/37932685340), including both operating systems and all interoperability jobs; the audit PR remains open for review.
 
 Hosted CI for the final v0.1.1 candidate commits remains pending and is required before publication.
 
