@@ -1,6 +1,6 @@
 # Release checklist
 
-The v0.1 release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.md). Before external publication, a maintainer must re-run or inspect:
+The v0.1.1 local release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.md). Before external publication, a maintainer must re-run or inspect:
 
 - [x] Frozen specification and schema.
 - [x] Native Rust, TypeScript, and Python implementations.
@@ -8,8 +8,8 @@ The v0.1 release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.md). Bef
 - [x] Malformed archive, traversal, limit, integrity, and redaction tests.
 - [x] Independent CI workflows and package/build validation.
 - [x] Documentation examples and clean-environment workflow.
-- [x] Version consistency at `0.1.0`.
-- [x] Completed final audit and release notes.
+- [x] Version consistency at `0.1.1` in authoritative declarations, lock metadata, and rebuilt local artifacts.
+- [ ] Draft coordinated `v0.1.1` release notes reviewed.
 - [x] Local Windows validator and interoperability regression checks pass.
 - [x] Linux validator and interoperability checks pass on the corrected commit in hosted CI: [run 37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).
 - [x] Windows fixture bytes remain unchanged and Windows validator/interoperability checks pass on the corrected commit in hosted CI: [run 37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).

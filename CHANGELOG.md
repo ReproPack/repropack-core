@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.1.1 - local release candidate
+
+- Corrected canonical fixture path handling and preserved fixture evidence bytes across Windows checkouts.
+- Corrected portable Phase 8 runtime and cross-language path handling.
+- Recorded successful hosted Ubuntu and Windows validation for the coordinated implementation set.
+
 ## 0.1.0 - 2026-10-09
 
 - Released the v0.1 specification, schema, fixtures, and native Rust, TypeScript, and Python implementations.

@@ -80,3 +80,7 @@ Owner decisions required:
 - crates.io and PyPI publication approval and publisher/name confirmation.
 - Whether TypeScript becomes public; if yes, approval to change private: true and finalize package entry points/files.
 - GitHub Release creation and final artifact contents.
+
+## v0.1.1 preparation note
+
+The corrected coordinated snapshot is now prepared locally as version 0.1.1. Authoritative package metadata and lock metadata were updated with repository tooling; local TypeScript, Python, and Rust package validation produced 0.1.1 outputs. This is preparation evidence only: the existing local v0.1.0 tags remain unchanged, no v0.1.1 tag exists, and no release or package has been published.

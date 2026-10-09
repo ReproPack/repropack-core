@@ -1,19 +1,19 @@
 # Project state
 
-- Current phase: v0.1.0 release preparation
+- Current phase: v0.1.1 release preparation
 - Current repository: repropack-core (coordination), with synchronized implementation plans in TypeScript and Python repositories
 - Phase status: technically validated; coordinated publication decisions remain owner-controlled
-- Last completed phase: Phase 14 - v0.1 release
+- Last completed phase: Phase 14 - v0.1 release candidate foundation
 - Current objective: finish local release-readiness correction and preserve the post-release integration deferral
 - Completed work: Phase 1 specification and fixtures; Rust typed model; ZIP writer/reader; bounded archive checks; correspondence validation; verification; safe extraction; CLI operations; conservative redaction helpers; post-redaction metadata updates; catalog-driven conformance runner; native TypeScript and Python implementations; six-direction Rust/TypeScript/Python exchange matrix; malformed-input and resource-limit security tests; stable CLI exit/error contract; JSON output mode; real multi-language CI; package validation; dependency audit; tutorial; real minimal example; format examples; troubleshooting; migration guidance; contributor templates; maintainer/design/compatibility/security guidance; fixture contribution instructions; final audit; release notes; aligned 0.1.0 versions; and local release tags
-- Remaining work: decide release-tag/version handling, complete publication approvals, and defer post-release integrations
+- Remaining work: finish local v0.1.1 metadata/artifact preparation, decide release-tag handling, complete publication approvals, and defer post-release integrations
 - Known blockers: local Linux validation is unavailable in this Windows environment; system Python and npm/pnpm PowerShell shims are unavailable, so isolated Python and `npm.cmd` runtimes are used locally
 - Known risks: independent implementer review remains recommended; memory-bounded streaming and encrypted/archive-bomb hardening remain follow-up work
 - Specification version: 0.1 (approved for implementation)
-- Implementation versions: none released
+- Implementation versions: target 0.1.1 locally; no implementation package released
 - Conformance status: semantic fixtures exist; local validator and interoperability matrix pass on Windows; corrected Linux/Windows hosted regression evidence is complete
 - Hosted CI correction: run `37918806077` exposed Windows checkout normalization; the focused `.gitattributes` rule corrected it. Run [37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037) passed Phase 1 validation, Rust checks, and all 12 interoperability paths on both Ubuntu and Windows
-- Release baseline: synchronized `main` is `08807da720abeca2d685993ee14978b36e499192`; local annotated `v0.1.0` still targets `5abad374be8bce57d60978b923b8f9dec4fbfef5`; no remote tag or GitHub Release exists
+- Release baseline: synchronized `main` is `2b1327cec7ad25b3eb5ac3934a056e01549fdfbf`; target is local `v0.1.1`; local annotated `v0.1.0` still targets `5abad374be8bce57d60978b923b8f9dec4fbfef5`; no remote tag or GitHub Release exists
 - Local correction evidence: validator, regression test, Rust format, Clippy, 21 Rust tests, conformance, locked metadata, package validation, and the 12-path Phase 8 matrix pass on Windows; hosted Linux/Windows evidence is recorded above
 - Portability correction: Phase 1 fixture validation now keeps canonical forward-slash paths; Phase 8 uses platform-neutral path components and portable Python discovery with `REPROPACK_PYTHON` override
 - Registry readiness: crates.io dry-run passes and publication approval remains open; npm remains blocked by `private: true` and package-entry-point decisions; PyPI artifacts and hosted installation pass, while name ownership and publication approval remain open
