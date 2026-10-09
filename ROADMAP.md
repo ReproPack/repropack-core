@@ -10,15 +10,15 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 0 complete; Phase 1 in progress**.
+Current overall status: **Phase 2 in progress; Phase 1 complete by recorded project-owner approval**.
 
 ## Phase register
 
 | Phase | Status | Owner repositories | Dependencies | Exit gate |
 |---|---|---|---|---|
 | 0 — Foundation | **Complete** | All | None | Independent repos, truthful documentation, audit, and pushed commits |
-| 1 — Specification | **In progress** | Core, reviewed by all | Phase 0 | Frozen normative specification and canonical schema |
-| 2 — Rust model | **Not started** | Core | Phase 1 | Tested typed model and validation behavior |
+| 1 — Specification | **Complete** | Core, approved by project owner | Phase 0 | Frozen normative specification and canonical schema |
+| 2 — Rust model | **Complete** | Core | Phase 1 | Tested typed model and validation behavior |
 | 3 — Rust bundle operations | **Not started** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
 | 4 — Integrity and redaction | **Not started** | Core | Phase 3 | Hash verification and conservative redaction behavior |
 | 5 — Shared conformance | **Not started** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
@@ -46,19 +46,19 @@ Current overall status: **Phase 0 complete; Phase 1 in progress**.
 
 ### Phase 1 — Language-neutral specification
 
-**Status:** In progress. **Depends on:** Phase 0. **Completed in this execution:** normative draft, schema, format decision, and semantic fixtures.
+**Status:** Complete. **Depends on:** Phase 0. **Evidence:** normative specification, schema, format decision, semantic fixtures, reproducible audit, and explicit project-owner approval recorded on 2026-10-09. Independent implementer review remains recommended before v0.1 release.
 
 **Purpose:** Freeze semantics implementers can follow without reading Rust. **Tasks:** Compare ZIP, tar, and directory transport; define the manifest schema, evidence kinds, paths, timestamps, provenance, redaction markers, SHA-256 encoding, deterministic ordering, limits, errors, extensions, unknown fields, and compatibility.
 
-**Artifacts:** `docs/SPECIFICATION.md`, `schema/manifest.schema.json`, format decision, examples, and initial valid/invalid fixtures. **Remaining tests:** Independent review by two implementers; examples validated by two JSON implementations; unsafe paths, duplicate entries, future versions, malformed metadata, and limits have expected outcomes. **Exit:** Another-language developer can implement the reader/writer from the specification alone and the independent review is recorded.
+**Artifacts:** `docs/SPECIFICATION.md`, `schema/manifest.schema.json`, format decision, examples, initial valid/invalid fixtures, and `docs/PHASE_1_REVIEW.md`. **Exit:** Another-language developer can implement the reader/writer from the specification alone; owner approval authorizes Phase 2.
 
 ### Phase 2 — Rust core data model
 
-**Status:** Not started. **Depends on:** Phase 1.
+**Status:** Complete. **Depends on:** Phase 1. **Evidence:** Rust crate, typed manifest model, validation errors, canonical JSON serialization, fixture-backed tests, Clippy, formatting, and doctests recorded in `docs/PHASE_2_REVIEW.md`.
 
 **Tasks:** Create stable Rust package structure; define typed bundle, evidence, provenance, redaction, hash, limit, and error types; implement JSON serialization/deserialization and validation; document public APIs.
 
-**Tests:** Required/optional fields, canonical paths, timestamps, hashes, unknown fields, unsupported versions, malformed JSON, and round trips. **Exit:** Formatting, Clippy, unit tests, and integration tests pass, with behavior mapped to specification clauses.
+**Tests:** Required/optional fields, canonical paths, timestamps, hashes, unknown fields, unsupported versions, malformed JSON, redaction, extensions, duplicate/unsorted paths, and round trips. **Exit:** Formatting, Clippy, unit tests, and doctests pass, with behavior mapped to specification clauses. Archive behavior remains deferred to Phase 3.
 
 ### Phase 3 — Rust bundle operations
 

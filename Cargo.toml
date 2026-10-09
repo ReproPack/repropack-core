@@ -1,0 +1,12 @@
+[package]
+name = "repropack-core"
+version = "0.1.0"
+edition = "2021"
+description = "Canonical ReproPack data model and validation"
+license = "MIT"
+repository = "https://github.com/ReproPack/repropack-core"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"

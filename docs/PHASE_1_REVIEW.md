@@ -30,4 +30,4 @@ Checked that a Go/Java/C#/other implementation can use JSON Schema plus the norm
 
 ## Completion decision
 
-Phase 1 artifacts and automated acceptance checks are complete. The roadmap status remains **In progress** until an independent implementer review is recorded. Phase 2 must not be started under the current completion gate until that review is obtained or the project explicitly changes the gate in a new decision.
+The project owner explicitly approved Phase 1 and authorized Phase 2 on 2026-10-09. Phase 1 is therefore **Complete by project-owner approval**. No external implementer review was available in this session; that limitation remains recorded and is recommended before v0.1 release. Phase 2 may proceed, but must not claim external review that did not occur.

@@ -1,16 +1,16 @@
 # Project state
 
-- Current phase: Phase 1 - language-neutral specification
+- Current phase: Phase 3 - Rust bundle operations
 - Current repository: repropack-core (coordination), with synchronized implementation plans in TypeScript and Python repositories
-- Phase status: in progress; specification and schema drafted, fixtures added, independent review pending
-- Last completed phase: Phase 0 - foundation and documentation
-- Current objective: complete independent review and freeze the v0.1 language-neutral contract
-- Completed work: normative v0.1 draft, JSON Schema, format comparison, decision log entries, valid/invalid semantic fixtures, and expected outcomes
-- Remaining work: independent review, schema validation with multiple implementations, archive-level fixture generation, and implementation phases
+- Phase status: not started; Phase 2 complete and Phase 3 ready
+- Last completed phase: Phase 2 - Rust core data model
+- Current objective: implement ZIP bundle creation, inspection, validation, verification, and safe extraction
+- Completed work: Phase 1 specification and fixtures; Rust typed model, strict deserialization, canonical JSON serialization, semantic validation, and passing test/lint/format audits
+- Remaining work: archive reader/writer, safe extraction, archive correspondence checks, and CLI operations
 - Known blockers: Python executable inaccessible in the current Windows session; npm/pnpm PowerShell shims blocked by execution policy
-- Known risks: independent review and implementation validation are outstanding; archive-level security cases are deferred to Phase 3
-- Specification version: 0.1 (Phase 1 draft, pending independent review)
+- Known risks: independent implementer review remains recommended; archive-level security cases are deferred to Phase 3
+- Specification version: 0.1 (approved for Phase 2 implementation)
 - Implementation versions: none released
-- Conformance status: semantic fixtures exist; no implementation has passed them
-- Next phase: Phase 1 completion, then Phase 2 - Rust core data model
-- Next recommended action: obtain independent review, validate the schema and fixtures in at least two ecosystems, then mark Phase 1 complete
+- Conformance status: semantic fixtures exist; Rust model passes its applicable fixture tests; no bundle implementation is conformant
+- Next phase: Phase 3 - Rust bundle operations
+- Next recommended action: design bounded ZIP reading/writing and implement safe archive correspondence checks without executing contents
