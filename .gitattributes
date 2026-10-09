@@ -1,0 +1,2 @@
+# Preserve canonical evidence bytes; do not normalize line endings.
+/conformance/fixtures/**/evidence/** -text

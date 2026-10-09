@@ -12,5 +12,6 @@ The v0.1 release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.md). Bef
 - [x] Completed final audit and release notes.
 - [x] Local Windows validator and interoperability regression checks pass.
 - [ ] Linux validator and interoperability checks pass on the corrected commit in hosted CI.
+- [ ] Windows fixture bytes remain unchanged and Windows validator/interoperability checks pass on the corrected commit in hosted CI.
 - [ ] Hosted CI passes for the corrected release snapshot, including Rust formatting, lint, tests, metadata, and package validation.
 - [ ] Explicit publication approval, tags, package upload, and hosted release.

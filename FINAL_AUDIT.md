@@ -54,3 +54,7 @@ The original local release snapshot contained a portability defect in `scripts/v
 The Phase 8 interoperability helper now uses platform-neutral path components, supports explicit `REPROPACK_PYTHON`, `REPROPACK_PYTHON_PROJECT`, and `REPROPACK_TYPESCRIPT` overrides, and performs platform-aware Python discovery with an actionable missing-runtime error. Hosted Ubuntu and Windows CI coverage is configured but has not yet run for the corrected local commits.
 
 This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; the corrected work is untagged until the maintainer chooses the release-tag strategy. The local core branch remains ahead of `origin/main`, and no synchronization, package publication, or hosted release has occurred.
+
+## Post-CI failure correction
+
+Hosted run `37918806077` established that the Windows checkout normalized canonical fixture evidence line endings, changing the byte length expected by the manifest. The repository now marks only `/conformance/fixtures/**/evidence/**` as `-text`; normal source-file line-ending behavior is unchanged. Existing Phase 1 validator tests cover fixture byte lengths, hashes, valid cases, and unsafe paths. The correction is local and requires a hosted Linux/Windows rerun; no hosted pass is claimed here.
