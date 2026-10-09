@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 12 complete; Phase 13 not started**.
+Current overall status: **Phase 13 complete; Phase 14 not started**.
 
 ## Phase register
 
@@ -29,7 +29,7 @@ Current overall status: **Phase 12 complete; Phase 13 not started**.
 | 10 — Usability | **Complete** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
 | 11 — CI and packaging | **Complete** | All | Phase 9 | Real CI, package builds, and validation succeed |
 | 12 — Documentation and examples | **Complete** | All | Phase 10 | Fresh-user workflow works from clean environments |
-| 13 — Contributor readiness | **Not started** | All | Phase 11 | External contribution path is usable and tested |
+| 13 — Contributor readiness | **Complete** | All | Phase 11 | External contribution path is usable and tested |
 | 14 — v0.1 release | **Not started** | All | Phases 8–13 | Final audit and release checklist pass |
 | 15 — Reproduction integrations | **Deferred** | All | v0.1 | Revisit after user feedback and a separate integration threat model |
 | 16 — CI/GitHub integrations | **Deferred** | All | v0.1 | Revisit after permissions, retention, and secret handling design |
@@ -128,9 +128,9 @@ Current overall status: **Phase 12 complete; Phase 13 not started**.
 
 ### Phase 13 — Contributor readiness
 
-**Status:** Not started. **Depends on:** Phase 11.
+**Status:** Complete. **Depends on:** Phase 11. **Evidence:** Issue/PR templates, maintainer guide, design-review guide, compatibility policy, security reporting guidance, fixture contribution guide, and `docs/PHASE_13_REVIEW.md`.
 
-**Tasks:** Add issue/PR templates, maintainer responsibilities, design review, compatibility policy, security reporting, and fixture contribution guidance. **Exit:** An external contributor can run checks and add a fixture without private context.
+**Tasks:** Add issue/PR templates, maintainer responsibilities, design review, compatibility policy, security reporting, and fixture contribution guidance. **Exit:** An external contributor can run checks and add a fixture without private context. Met.
 
 ### Phase 14 — v0.1 release
 
