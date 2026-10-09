@@ -1,0 +1,8 @@
+{
+  "bundle_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "capture": { "mode": "explicit", "tool": { "name": "fixture-generator", "version": "0.1.0" } },
+  "created_at": "2026-01-01T00:00:00Z",
+  "evidence": [],
+  "format": "repropack",
+  "spec_version": "9.0"
+}

@@ -1,0 +1,5 @@
+{
+  "valid": true,
+  "error": null,
+  "assertions": ["redaction-marker", "original-bytes-absent", "replacement-hash", "secret-not-echoed"]
+}

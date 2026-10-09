@@ -1,0 +1,11 @@
+{
+  "bundle_id": "55555555-5555-4555-8555-555555555555",
+  "capture": { "mode": "explicit", "tool": { "name": "fixture-generator", "version": "0.1.0" } },
+  "created_at": "2026-01-01T00:00:00Z",
+  "evidence": [
+    { "kind": "text", "media_type": "text/plain", "path": "evidence/extension.txt", "redaction": { "status": "none" }, "selection": "explicit", "sha256": "8f720582a5588f127c5cd3deb26e573de26b44070a9ecdf57943201bcb937e92", "size": 27 }
+  ],
+  "extensions": { "https://example.com/repropack/fixture": { "opaque": true } },
+  "format": "repropack",
+  "spec_version": "0.1"
+}

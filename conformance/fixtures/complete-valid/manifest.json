@@ -1,0 +1,14 @@
+{
+  "bundle_id": "22222222-2222-4222-8222-222222222222",
+  "capture": { "mode": "generated", "source": "ci://example/run/42", "tool": { "name": "fixture-generator", "version": "0.1.0" } },
+  "created_at": "2026-01-01T00:00:00Z",
+  "evidence": [
+    { "kind": "environment", "media_type": "application/json", "path": "evidence/environment.json", "redaction": { "status": "none" }, "selection": "generated", "sha256": "c7b7d9e6b2665da4d8e8af88188fd81e5495e83769461f1de782eac856caae96", "size": 27 },
+    { "kind": "log", "media_type": "text/plain", "path": "evidence/run.log", "redaction": { "status": "none" }, "selection": "generated", "sha256": "04f13eebc2ed3e011481af40df51d15f6264b80aecbcd0f00420657d9bca10da", "size": 25 },
+    { "kind": "test-output", "media_type": "text/plain", "path": "evidence/test-output.txt", "redaction": { "status": "none" }, "selection": "generated", "sha256": "c4d509a883a717186abd36e2bef952f781e32b49c8bb62c01fc3d4a48e0a38fb", "size": 14 }
+  ],
+  "extensions": { "https://example.com/repropack/fixture": { "case": "complete" } },
+  "format": "repropack",
+  "incident": { "category": "test-failure", "summary": "A representative complete fixture.", "title": "Example test failure" },
+  "spec_version": "0.1"
+}

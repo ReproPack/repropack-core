@@ -1,0 +1,10 @@
+{
+  "bundle_id": "11111111-1111-4111-8111-111111111111",
+  "capture": { "mode": "explicit", "tool": { "name": "fixture-generator", "version": "0.1.0" } },
+  "created_at": "2026-01-01T00:00:00Z",
+  "evidence": [
+    { "kind": "text", "media_type": "text/plain", "path": "evidence/message.txt", "redaction": { "status": "none" }, "selection": "explicit", "sha256": "2f85758b2111341b1738080263f77cde9db4e00c4d9dc2ef5317d9cbc938f27e", "size": 28 }
+  ],
+  "format": "repropack",
+  "spec_version": "0.1"
+}

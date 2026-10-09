@@ -4,7 +4,7 @@ ReproPack is a language-neutral, inspectable evidence bundle for software failur
 
 ## Current status
 
-Phase 0 documentation foundation. No bundle format, CLI, or Rust implementation is claimed complete yet. Normative format decisions are proposed in `docs/SPECIFICATION.md` and will be frozen only after Phase 1 review.
+Phase 1 specification work is in progress. The v0.1 manifest contract, schema, and semantic fixtures are available for implementation review; no CLI, Rust implementation, or conformance result is claimed complete yet.
 
 ## Repository map
 

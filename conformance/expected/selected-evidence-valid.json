@@ -1,0 +1,5 @@
+{
+  "valid": true,
+  "error": null,
+  "assertions": ["explicit-selection", "archive-correspondence", "sha256"]
+}

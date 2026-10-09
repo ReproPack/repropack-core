@@ -1,0 +1,5 @@
+{
+  "valid": false,
+  "error": "limit-exceeded",
+  "assertions": ["configured-entry-limit-enforced"]
+}

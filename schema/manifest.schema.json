@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ReproPack/repropack-core/blob/main/schema/manifest.schema.json",
+  "title": "ReproPack 0.1 manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "spec_version", "bundle_id", "created_at", "capture", "evidence"],
+  "properties": {
+    "format": { "const": "repropack" },
+    "spec_version": { "const": "0.1" },
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?Z$"
+    },
+    "capture": { "$ref": "#/$defs/capture" },
+    "incident": { "$ref": "#/$defs/incident" },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": { "format": "uri" },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "tool"],
+      "properties": {
+        "mode": { "enum": ["explicit", "generated"] },
+        "tool": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1, "maxLength": 128 },
+            "version": { "type": "string", "minLength": 1, "maxLength": 64 }
+          }
+        },
+        "actor": { "type": "string", "maxLength": 256 },
+        "source": { "type": "string", "maxLength": 512 }
+      }
+    },
+    "incident": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "maxLength": 256 },
+        "summary": { "type": "string", "maxLength": 8192 },
+        "category": { "type": "string", "maxLength": 128 },
+        "reported_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?Z$"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "media_type", "size", "sha256", "selection", "redaction"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^evidence/[A-Za-z0-9._~-]+(?:/[A-Za-z0-9._~-]+)*$",
+          "maxLength": 4096
+        },
+        "kind": {
+          "enum": ["log", "text", "structured", "source", "environment", "test-output", "file"]
+        },
+        "media_type": {
+          "type": "string",
+          "pattern": "^[a-z0-9!#$%&'*+.^_`|~-]+/[a-z0-9!#$%&'*+.^_`|~-]+$",
+          "maxLength": 255
+        },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "selection": { "enum": ["explicit", "generated", "derived"] },
+        "redaction": { "$ref": "#/$defs/redaction" }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["none", "redacted"] },
+        "reason": { "enum": ["secret", "personal-data", "user-requested", "policy"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "redacted" } } },
+          "then": { "required": ["reason"] }
+        },
+        {
+          "if": { "properties": { "status": { "const": "none" } } },
+          "then": { "not": { "required": ["reason"] } }
+        }
+      ]
+    }
+  }
+}

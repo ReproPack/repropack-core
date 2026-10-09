@@ -1,0 +1,5 @@
+{
+  "valid": false,
+  "error": "hash-mismatch",
+  "assertions": ["sha256-format-or-value-rejected"]
+}

@@ -10,14 +10,14 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 0 complete; Phase 1 not started**.
+Current overall status: **Phase 0 complete; Phase 1 in progress**.
 
 ## Phase register
 
 | Phase | Status | Owner repositories | Dependencies | Exit gate |
 |---|---|---|---|---|
 | 0 — Foundation | **Complete** | All | None | Independent repos, truthful documentation, audit, and pushed commits |
-| 1 — Specification | **Not started** | Core, reviewed by all | Phase 0 | Frozen normative specification and canonical schema |
+| 1 — Specification | **In progress** | Core, reviewed by all | Phase 0 | Frozen normative specification and canonical schema |
 | 2 — Rust model | **Not started** | Core | Phase 1 | Tested typed model and validation behavior |
 | 3 — Rust bundle operations | **Not started** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
 | 4 — Integrity and redaction | **Not started** | Core | Phase 3 | Hash verification and conservative redaction behavior |
@@ -46,11 +46,11 @@ Current overall status: **Phase 0 complete; Phase 1 not started**.
 
 ### Phase 1 — Language-neutral specification
 
-**Status:** Not started. **Depends on:** Phase 0.
+**Status:** In progress. **Depends on:** Phase 0. **Completed in this execution:** normative draft, schema, format decision, and semantic fixtures.
 
 **Purpose:** Freeze semantics implementers can follow without reading Rust. **Tasks:** Compare ZIP, tar, and directory transport; define the manifest schema, evidence kinds, paths, timestamps, provenance, redaction markers, SHA-256 encoding, deterministic ordering, limits, errors, extensions, unknown fields, and compatibility.
 
-**Artifacts:** Final `docs/SPECIFICATION.md`, JSON Schema, format decision, examples, and initial valid/invalid fixtures. **Tests:** Independent review by two implementers; examples validated by two JSON implementations; unsafe paths, duplicate entries, future versions, malformed metadata, and limits have expected outcomes. **Exit:** Another-language developer can implement the reader/writer from the specification alone.
+**Artifacts:** `docs/SPECIFICATION.md`, `schema/manifest.schema.json`, format decision, examples, and initial valid/invalid fixtures. **Remaining tests:** Independent review by two implementers; examples validated by two JSON implementations; unsafe paths, duplicate entries, future versions, malformed metadata, and limits have expected outcomes. **Exit:** Another-language developer can implement the reader/writer from the specification alone and the independent review is recorded.
 
 ### Phase 2 — Rust core data model
 

@@ -1,0 +1,5 @@
+{
+  "valid": false,
+  "error": "invalid-manifest",
+  "assertions": ["capture-mode-enum"]
+}

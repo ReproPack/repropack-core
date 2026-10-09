@@ -18,7 +18,7 @@ Rust uses stable toolchains. TypeScript and Python use their native ecosystems a
 
 ## Conformance and versioning
 
-The shared suite tests semantic equivalence: metadata, evidence, hashes, redactions, and expected failures. Specification version, implementation version, and repository tags remain distinct. Current specification version is proposed `0.1-draft`; no implementation is conformant yet.
+The shared suite tests semantic equivalence: metadata, evidence, hashes, redactions, and expected failures. Specification version, implementation version, and repository tags remain distinct. Current specification version is `0.1` in Phase 1 implementation review; no implementation is conformant yet.
 
 ## Future-agent rules
 

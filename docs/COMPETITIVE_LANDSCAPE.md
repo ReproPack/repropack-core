@@ -11,6 +11,8 @@ Research accessed 2026-10-09.
 
 The gap is meaningful only if ReproPack stays narrow: an inspectable, hash-verifiable, cross-language evidence container with conservative capture and safe extraction. It must reference or embed compatible standards rather than recreate their domain semantics.
 
+Phase 1 also evaluated the [JSON Schema Draft 2020-12 specification](https://json-schema.org/draft/2020-12) for manifest validation. It provides a language-neutral schema vocabulary with broad implementations; ReproPack uses it for structural validation while keeping path safety, archive limits, and digest verification as additional semantic checks. Research access date: 2026-10-09.
+
 ## Format evaluation
 
-ZIP offers broad tooling and inspection; tar is simpler but less uniformly native on all target platforms; a directory is easiest to inspect but is not a portable single artifact; CBOR/protobuf improve typed encoding but reduce casual inspection. Phase 1 must measure library behavior and finalize the candidate. The current ZIP/JSON proposal is therefore explicitly provisional.
+ZIP offers broad tooling and inspection; tar is simpler but less uniformly native on all target platforms; a directory is easiest to inspect but is not a portable single artifact; CBOR/protobuf improve typed encoding but reduce casual inspection. Phase 1 freezes ZIP plus JSON for v0.1, with ZIP entries restricted to regular files and bounded reads. Tar remains a possible future transport; the directory representation is used only for source fixtures.

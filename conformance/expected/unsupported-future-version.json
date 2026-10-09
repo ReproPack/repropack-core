@@ -1,0 +1,5 @@
+{
+  "valid": false,
+  "error": "unsupported-version",
+  "assertions": ["version-rejected-before-evidence-use"]
+}

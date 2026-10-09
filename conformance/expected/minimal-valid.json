@@ -1,0 +1,5 @@
+{
+  "valid": true,
+  "error": null,
+  "assertions": ["manifest-schema", "archive-correspondence", "sha256", "size", "path-safety"]
+}

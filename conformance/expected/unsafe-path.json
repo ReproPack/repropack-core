@@ -1,0 +1,5 @@
+{
+  "valid": false,
+  "error": "unsafe-path",
+  "assertions": ["traversal-rejected"]
+}
