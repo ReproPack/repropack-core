@@ -20,3 +20,4 @@
 - Funding readiness: Drips round/registration and GrantFox campaign/application status remain later tasks; no wallet, `FUNDING.json`, campaign, or application action is authorized here
 - Next phase: coordinated release preparation and publication, after owner decisions are recorded; Phases 15–18 remain deferred
 - Next recommended action: choose the version/tag strategy, then approve or reject registry publication and GitHub Release creation
+- Full organization audit: branch `audit/full-repropack-2026-10-09` contains confirmed extraction, decompression, schema-validation, and CRLF-redaction fixes plus matching cross-branch CI checkout behavior. See [AUDIT_REPORT.md](AUDIT_REPORT.md). Audit-branch hosted CI, PR review, and publication remain pending.
