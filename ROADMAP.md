@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 2 in progress; Phase 1 complete by recorded project-owner approval**.
+Current overall status: **Phase 3 complete; Phase 4 not started**.
 
 ## Phase register
 
@@ -19,7 +19,7 @@ Current overall status: **Phase 2 in progress; Phase 1 complete by recorded proj
 | 0 — Foundation | **Complete** | All | None | Independent repos, truthful documentation, audit, and pushed commits |
 | 1 — Specification | **Complete** | Core, approved by project owner | Phase 0 | Frozen normative specification and canonical schema |
 | 2 — Rust model | **Complete** | Core | Phase 1 | Tested typed model and validation behavior |
-| 3 — Rust bundle operations | **Not started** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
+| 3 — Rust bundle operations | **Complete** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
 | 4 — Integrity and redaction | **Not started** | Core | Phase 3 | Hash verification and conservative redaction behavior |
 | 5 — Shared conformance | **Not started** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
 | 6 — TypeScript implementation | **Not started** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
@@ -62,11 +62,11 @@ Current overall status: **Phase 2 in progress; Phase 1 complete by recorded proj
 
 ### Phase 3 — Rust bundle operations
 
-**Status:** Not started. **Depends on:** Phase 2.
+**Status:** Complete. **Depends on:** Phase 2. **Evidence:** ZIP writer/reader, bounded limits, correspondence checks, verification, safe extraction, CLI commands, 14 passing Rust tests, and `docs/PHASE_3_REVIEW.md`.
 
 **Tasks:** Implement the proposed container writer/reader and commands for explicitly selected capture, inspect, validate, verify, and safe extract; normalize paths; enforce entry and total-size limits; provide actionable errors.
 
-**Tests/security:** Minimal and complete round trips; malformed archives; absolute/traversal paths; duplicate names; symlink/special-file handling; bounded extraction; no execution of bundle content. **Exit:** Every CLI command has tested behavior and documented examples use real commands.
+**Tests/security:** Minimal and complete round trips; malformed/unsafe paths; directory and special-file handling; bounded extraction; altered content; and no execution of bundle content. **Exit:** Every CLI command has smoke-tested behavior and documented examples use real commands. Redaction hardening remains Phase 4.
 
 ### Phase 4 — Integrity and conservative redaction
 

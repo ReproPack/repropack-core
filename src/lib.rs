@@ -8,6 +8,8 @@ use serde_json::Value;
 use std::collections::{BTreeMap, HashSet};
 use thiserror::Error;
 
+pub mod bundle;
+
 pub const FORMAT: &str = "repropack";
 pub const SPEC_VERSION: &str = "0.1";
 
@@ -86,6 +88,20 @@ pub enum EvidenceKind {
     Environment,
     TestOutput,
     File,
+}
+
+impl EvidenceKind {
+    pub fn kind_name(&self) -> &'static str {
+        match self {
+            Self::Log => "log",
+            Self::Text => "text",
+            Self::Structured => "structured",
+            Self::Source => "source",
+            Self::Environment => "environment",
+            Self::TestOutput => "test-output",
+            Self::File => "file",
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
