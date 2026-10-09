@@ -17,4 +17,5 @@ jobs:
           test -f docs/SPECIFICATION.md
           test -f PROJECT_STATE.md
           test -f ROADMAP.md
+          node scripts/validate_phase1.mjs
           ! grep -R -n -E 'TODO|TBD|coming soon' README.md docs PROJECT_STATE.md

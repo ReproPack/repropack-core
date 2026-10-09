@@ -1,0 +1,18 @@
+{
+  "spec_version": "0.1",
+  "fixture_root": "conformance/fixtures",
+  "cases": [
+    { "id": "minimal-valid", "valid": true, "expected": "conformance/expected/minimal-valid.json" },
+    { "id": "complete-valid", "valid": true, "expected": "conformance/expected/complete-valid.json" },
+    { "id": "redacted-valid", "valid": true, "expected": "conformance/expected/redacted-valid.json" },
+    { "id": "selected-evidence-valid", "valid": true, "expected": "conformance/expected/selected-evidence-valid.json" },
+    { "id": "unknown-extension-valid", "valid": true, "expected": "conformance/expected/unknown-extension-valid.json" },
+    { "id": "missing-required-field", "valid": false, "expected": "conformance/expected/missing-required-field.json" },
+    { "id": "invalid-metadata", "valid": false, "expected": "conformance/expected/invalid-metadata.json" },
+    { "id": "corrupted-content", "valid": false, "expected": "conformance/expected/corrupted-content.json" },
+    { "id": "incorrect-hash", "valid": false, "expected": "conformance/expected/incorrect-hash.json" },
+    { "id": "unsupported-future-version", "valid": false, "expected": "conformance/expected/unsupported-future-version.json" },
+    { "id": "unsafe-path", "valid": false, "expected": "conformance/expected/unsafe-path.json" },
+    { "id": "oversized-input", "valid": false, "expected": "conformance/expected/oversized-input.json" }
+  ]
+}
