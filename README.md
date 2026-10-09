@@ -4,7 +4,7 @@ ReproPack is a language-neutral, inspectable evidence bundle for software failur
 
 ## Current status
 
-Phase 12 is complete and Phase 13 is next. The v0.1 contract, three native implementations, interoperability, security hardening, stable CLI, CI/package validation, and fresh-user documentation are complete; contributor and release readiness remain.
+Phases 0–14 are complete as a local release-candidate foundation. The v0.1 contract, three native implementations, interoperability, security hardening, stable CLI, CI/package validation, contributor readiness, and fresh-user documentation are complete. The corrected v0.1.1 candidate is in local release preparation; publication, tags, and registry decisions remain separate.
 
 ## Repository map
 
