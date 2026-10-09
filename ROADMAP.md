@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 6 complete; Phase 7 not started**.
+Current overall status: **Phase 6 complete; Phase 7 in progress (Python validation blocked)**.
 
 ## Phase register
 
@@ -23,7 +23,7 @@ Current overall status: **Phase 6 complete; Phase 7 not started**.
 | 4 — Integrity and redaction | **Complete** | Core | Phase 3 | Hash verification and conservative redaction behavior |
 | 5 — Shared conformance | **Complete** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
 | 6 — TypeScript implementation | **Complete** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
-| 7 — Python implementation | **Not started** | Python | Phases 1 and 5 | Native Python passes shared semantics |
+| 7 — Python implementation | **In progress** | Python | Phases 1 and 5 | Native Python passes shared semantics |
 | 8 — Interoperability | **Not started** | All | Phases 6 and 7 | Required cross-language matrix passes |
 | 9 — Security hardening | **Not started** | All | Phase 8 | Malformed-input and resource-limit audit passes |
 | 10 — Usability | **Not started** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
@@ -92,9 +92,9 @@ Current overall status: **Phase 6 complete; Phase 7 not started**.
 
 ### Phase 7 — Native Python implementation
 
-**Status:** Not started. **Depends on:** Phases 1 and 5.
+**Status:** In progress. **Depends on:** Phases 1 and 5. **Evidence:** Native standard-library Python model, canonical JSON, ZIP writer/reader, verification, redaction, safe extraction, fixture tests, and `repropack-python` commit `4f27748`. Execution validation is blocked because no usable Python executable is available in the current Windows session.
 
-**Tasks:** Implement native models, archive I/O, hashing, validation, safe extraction, exceptions, SDK APIs, and optional CLI without invoking Rust. **Tests:** Unit/integration tests, shared fixtures, malformed archive/path/limit tests, and package builds. **Exit:** Python passes shared semantics and exchanges bundles with Rust.
+**Tasks:** Implement native models, archive I/O, hashing, validation, safe extraction, exceptions, SDK APIs, and optional CLI without invoking Rust. **Tests:** Unit/integration tests, shared fixtures, malformed archive/path/limit tests, and package builds. **Exit:** Python passes shared semantics and exchanges bundles with Rust. Implementation is present; interpreter execution remains the open exit criterion.
 
 ### Phase 8 — Cross-language interoperability
 
