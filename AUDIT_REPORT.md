@@ -30,20 +30,20 @@ The existing local `v0.1.0` tags were inspected and not moved, recreated, or pus
 - `src/model.ts`: path validation rejects `.` and `..` components without rejecting valid names such as `foo..txt`; strict calendar timestamps, absolute URI extension names, nested `incident` validation, capture metadata lengths, media-type lengths, and path-byte limits now match the schema.
 - `src/redaction.ts`: CRLF private-key delimiters are recognized and newline style is preserved.
 - `test/repropack.test.ts`: added CRLF, symlink ancestor, DEFLATE output bound, consecutive-dot filename, and nested-schema/timestamp/URI regressions.
-- `.github/workflows/ci.yml`: canonical Core checkout follows the matching branch during pushes and pull requests, allowing audit branches to test together.
+- `.github/workflows/ci.yml`: ordinary pushes and pull requests use the canonical `main` revisions of sibling repositories; deliberate coordinated interoperability runs use explicit `workflow_dispatch` revision inputs and print the resolved SHAs.
 
 ### Python
 
 - `src/repropack/model.py`: added nested `incident`, capture metadata lengths, media-type length, absolute URI extension, and strict reported-timestamp validation.
 - `src/repropack/redaction.py`: CRLF private-key delimiters are recognized and newline style is preserved.
 - `tests/test_repropack.py`: added CRLF and nested-schema/timestamp/URI regressions.
-- `.github/workflows/ci.yml`: canonical Core checkout follows the matching branch during pushes and pull requests.
+- `.github/workflows/ci.yml`: ordinary pushes and pull requests use Core `main`; deliberate coordinated runs can provide an explicit Core branch, tag, or SHA.
 
 ### Core/Rust
 
 - `src/redaction.rs`: CRLF private-key delimiters are recognized and newline style is preserved.
 - `src/lib.rs`: corrected the stale Phase-2-only crate documentation and aligned model-level metadata/path/URI length checks with the schema.
-- `.github/workflows/ci.yml`: TypeScript and Python checkouts follow the matching branch during pushes and pull requests.
+- `.github/workflows/ci.yml`: ordinary interoperability runs use TypeScript/Python `main`; deliberate coordinated runs can provide explicit revisions for both implementations.
 - `docs/SPECIFICATION.md`, `docs/CONFORMANCE.md`, and implementation mapping documents now describe the current evidence without claiming universal conformance.
 
 ## Validation evidence
@@ -57,7 +57,7 @@ All commands below ran locally on Windows 11-style PowerShell paths on the audit
 - Core: `cargo package --offline --locked --allow-dirty --no-verify` — passed.
 - Core Phase 8: `node scripts/phase8_interop.mjs` with explicit local TypeScript, Python project, and Python-runtime overrides — all 12 directed paths passed for `minimal-valid` and `redacted-valid`.
 
-The audit-branch hosted evidence is now verified: [TypeScript run 37932693014](https://github.com/ReproPack/repropack-typescript/actions/runs/37932693014), [Python run 37932699454](https://github.com/ReproPack/repropack-python/actions/runs/37932699454), and [Core run 37932685340](https://github.com/ReproPack/repropack-core/actions/runs/37932685340) all passed. Core’s run passed Ubuntu and Windows documentation/Rust jobs plus Ubuntu and Windows interoperability. The earlier base-commit runs remain historical evidence only.
+The audit-branch hosted evidence is verified: [TypeScript run 37932693014](https://github.com/ReproPack/repropack-typescript/actions/runs/37932693014), [Python run 37932699454](https://github.com/ReproPack/repropack-python/actions/runs/37932699454), and [Core run 37932685340](https://github.com/ReproPack/repropack-core/actions/runs/37932685340) all passed. Core’s run passed Ubuntu and Windows documentation/Rust jobs plus Ubuntu and Windows interoperability. The workflows have since been corrected so ordinary PRs do not require same-named sibling branches; a new coordinated dispatch is required to revalidate all three audit branch SHAs together.
 
 ## Remaining security and conformance scope
 
@@ -98,7 +98,7 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 1. Review the open [Core PR #1](https://github.com/ReproPack/repropack-core/pull/1), [TypeScript PR #1](https://github.com/ReproPack/repropack-typescript/pull/1), and [Python PR #1](https://github.com/ReproPack/repropack-python/pull/1).
 2. Confirm branch protection/rulesets through the GitHub UI or organization-admin API access.
 3. Add an organization description, profile README, repository topics, and homepages if desired; these are presentation decisions, not code fixes.
-4. Merge only after maintainer review confirms the hosted CI evidence, including cross-branch checkout behavior.
+4. Merge only after maintainer review confirms the hosted CI evidence and, if coordinated candidate revisions are required, a manually dispatched run with all explicit revision inputs.
 5. Decide the corrected release version/tag strategy and npm visibility/entry-point policy before creating releases or publishing packages.
 6. Build a real contributor backlog before pursuing Drips Wave.
 7. Establish verified Stellar/Soroban utility and adoption evidence before considering SCF.
@@ -107,6 +107,6 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 
 1. **Is the specification language-neutral?** Yes at the normative contract level: ZIP/JSON/schema/fixture semantics are independent of Rust, and the implementations do not invoke one another at runtime.
 2. **Do all three implementations satisfy the same supported contract?** For the current canonical fixtures and two valid interoperability fixtures, yes; local audit-branch tests and all 12 matrix paths pass. This is not a universal-input certification.
-3. **What remains untested or potentially failing?** The malformed ZIP/parser cases listed above, full hosted CI for audit branches, registry ownership, Drips app state, and organization rulesets.
+3. **What remains untested or potentially failing?** The malformed ZIP/parser cases listed above, a post-correction coordinated dispatch using explicit audit-branch revisions, registry ownership, Drips app state, and organization rulesets.
 4. **What prevents a clean v0.1.1 release?** Audit-branch maintainer review/merge, the old-tag decision, registry approvals and package-specific gates, and the TypeScript npm-publication decision.
 5. **What must be fixed manually in GitHub?** Verify or configure rulesets, optionally improve organization/repository metadata, publish audit branches/open PRs, review/merge them, then perform separately approved release/tag/registry actions.
