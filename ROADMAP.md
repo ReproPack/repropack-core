@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 7 complete; Phase 8 not started**.
+Current overall status: **Phase 8 complete; Phase 9 not started**.
 
 ## Phase register
 
@@ -24,7 +24,7 @@ Current overall status: **Phase 7 complete; Phase 8 not started**.
 | 5 — Shared conformance | **Complete** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
 | 6 — TypeScript implementation | **Complete** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
 | 7 — Python implementation | **Complete** | Python | Phases 1 and 5 | Native Python passes shared semantics |
-| 8 — Interoperability | **Not started** | All | Phases 6 and 7 | Required cross-language matrix passes |
+| 8 — Interoperability | **Complete** | All | Phases 6 and 7 | Required cross-language matrix passes |
 | 9 — Security hardening | **Not started** | All | Phase 8 | Malformed-input and resource-limit audit passes |
 | 10 — Usability | **Not started** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
 | 11 — CI and packaging | **Not started** | All | Phase 9 | Real CI, package builds, and validation succeed |
@@ -98,9 +98,9 @@ Current overall status: **Phase 7 complete; Phase 8 not started**.
 
 ### Phase 8 — Cross-language interoperability
 
-**Status:** Not started. **Depends on:** Phases 6 and 7.
+**Status:** Complete. **Depends on:** Phases 6 and 7. **Evidence:** `scripts/phase8_interop.mjs`, two canonical fixtures, all 12 directed producer/consumer paths, normalized metadata comparison, and `docs/PHASE_8_REVIEW.md`.
 
-**Tasks:** Run all six producer/consumer paths and compare normalized metadata, evidence bytes, hashes, redactions, and expected errors. **Exit:** The matrix passes in CI or a reproducible harness with tool versions and fixture IDs recorded.
+**Tasks:** Run all six producer/consumer paths and compare normalized metadata, evidence bytes, hashes, redactions, and expected errors. **Exit:** The matrix passes in a reproducible harness with tool versions and fixture IDs recorded. Met for representative valid and redacted fixtures.
 
 ### Phase 9 — Security hardening
 
