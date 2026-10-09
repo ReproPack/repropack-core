@@ -1,16 +1,21 @@
 # Project state
 
-- Current phase: Phase 15 - reproduction integrations (deferred)
+- Current phase: v0.1.0 release-readiness correction (local)
 - Current repository: repropack-core (coordination), with synchronized implementation plans in TypeScript and Python repositories
-- Phase status: complete; Phase 14 local release candidate prepared
+- Phase status: in progress; Phase 14 local release candidate requires corrected cross-platform validation before synchronization
 - Last completed phase: Phase 14 - v0.1 release
-- Current objective: no active implementation phase; post-release integrations are deferred
+- Current objective: finish local release-readiness correction and preserve the post-release integration deferral
 - Completed work: Phase 1 specification and fixtures; Rust typed model; ZIP writer/reader; bounded archive checks; correspondence validation; verification; safe extraction; CLI operations; conservative redaction helpers; post-redaction metadata updates; catalog-driven conformance runner; native TypeScript and Python implementations; six-direction Rust/TypeScript/Python exchange matrix; malformed-input and resource-limit security tests; stable CLI exit/error contract; JSON output mode; real multi-language CI; package validation; dependency audit; tutorial; real minimal example; format examples; troubleshooting; migration guidance; contributor templates; maintainer/design/compatibility/security guidance; fixture contribution instructions; final audit; release notes; aligned 0.1.0 versions; and local release tags
-- Remaining work: external publication approval, hosted/package publication, and deferred post-release integrations
-- Known blockers: system Python and npm/pnpm PowerShell shims are unavailable; isolated Python and `npm.cmd` runtimes are used for validation
+- Remaining work: validate the corrected commit in hosted Linux/Windows CI, decide release-tag handling, obtain synchronization/publication approval, and defer post-release integrations
+- Known blockers: hosted CI has not yet run the corrected commit; local Linux validation is unavailable in this Windows environment; system Python and npm/pnpm PowerShell shims are unavailable, so isolated Python and `npm.cmd` runtimes are used locally
 - Known risks: independent implementer review remains recommended; memory-bounded streaming and encrypted/archive-bomb hardening remain follow-up work
 - Specification version: 0.1 (approved for implementation)
 - Implementation versions: none released
-- Conformance status: semantic fixtures exist; Rust model and bundle round-trip tests pass; full shared conformance is not yet claimed
-- Next phase: Phase 15 - reproduction integrations (deferred)
-- Next recommended action: obtain explicit publication approval before pushing tags or uploading artifacts; otherwise revisit deferred integrations after user feedback
+- Conformance status: semantic fixtures exist; local validator and interoperability matrix pass on Windows; Linux/Windows hosted regression evidence is pending for the corrected commit
+- Release baseline: local `main` is `5abad374be8bce57d60978b923b8f9dec4fbfef5`, local `v0.1.0` points to it, and `main` is 12 commits ahead of `origin/main`; this readiness correction is currently uncommitted and must not move the existing tag
+- Local correction evidence: `node scripts/validate_phase1.mjs`, `node --test tests/validate_phase1.test.mjs`, Rust format, Clippy, 21 Rust tests, conformance, locked metadata, package validation, and the 12-path Phase 8 matrix pass on Windows; hosted Linux/Windows CI remains pending
+- Portability correction: Phase 1 fixture validation now keeps canonical forward-slash paths; Phase 8 uses platform-neutral path components and portable Python discovery with `REPROPACK_PYTHON` override
+- Registry readiness: crates.io requires an online dry-run; npm remains blocked by `private: true` and package-entry-point decisions; PyPI requires clean-environment installation and publisher/name verification
+- Funding readiness: Drips round/registration and GrantFox campaign/application status remain later tasks; no wallet, `FUNDING.json`, campaign, or application action is authorized here
+- Next phase: deliberate GitHub synchronization and release preparation, after hosted CI passes and owner decisions are recorded; Phases 15–18 remain deferred
+- Next recommended action: review the uncommitted correction, then explicitly approve synchronization only after hosted Linux/Windows CI passes

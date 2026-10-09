@@ -5,12 +5,29 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const core = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const workspace = resolve(core, "..");
-const typescript = join(workspace, "repropack-typescript");
-const python = join(workspace, "repropack-python");
-const pythonRuntime = process.env.REPROPACK_PYTHON ?? join(workspace, "tools", "python312", "python.exe");
+const typescript = resolve(process.env.REPROPACK_TYPESCRIPT ?? join(workspace, "repropack-typescript"));
+const python = resolve(process.env.REPROPACK_PYTHON_PROJECT ?? join(workspace, "repropack-python"));
 const fixtures = join(core, "conformance", "fixtures");
 const outputRoot = join(core, "target", "phase8-interop");
 const cases = ["minimal-valid", "redacted-valid"];
+
+function resolvePythonRuntime() {
+  const configured = process.env.REPROPACK_PYTHON;
+  const candidates = configured
+    ? [configured]
+    : process.platform === "win32"
+      ? [join(workspace, "tools", "python312", "python.exe"), "py.exe", "python.exe"]
+      : [join(workspace, "tools", "python312", "bin", "python"), "python3", "python"];
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate, ["--version"], { encoding: "utf8" });
+    const version = `${probe.stdout ?? ""}${probe.stderr ?? ""}`.match(/Python (\d+)\.(\d+)/);
+    if (probe.status === 0 && version && (Number(version[1]) > 3 || (Number(version[1]) === 3 && Number(version[2]) >= 11))) return candidate;
+  }
+  const configuredHint = configured ? ` from REPROPACK_PYTHON=${configured}` : "";
+  throw new Error(`Python 3.11+ runtime not found${configuredHint}; set REPROPACK_PYTHON to an executable or install python3/python.exe`);
+}
+
+const pythonRuntime = resolvePythonRuntime();
 
 function run(command, args, cwd, env = {}) {
   const result = spawnSync(command, args, { cwd, encoding: "utf8", env: { ...process.env, ...env }, stdio: ["ignore", "pipe", "pipe"] });
@@ -22,13 +39,13 @@ function rustProduce(caseId, output) {
   const root = join(fixtures, caseId);
   const manifest = join(root, "manifest.json");
   const evidence = JSON.parse(readFileSync(manifest, "utf8")).evidence;
-  const mappings = evidence.map((entry) => `${entry.path}=${join(root, entry.path.replaceAll("/", "\\"))}`);
+  const mappings = evidence.map((entry) => `${entry.path}=${join(root, ...entry.path.split("/"))}`);
   run("cargo", ["run", "--quiet", "--", "capture", manifest, output, ...mappings], core);
 }
 
 function typescriptProduce(caseId, output) {
   const moduleUrl = pathToFileURL(join(typescript, "dist", "src", "bundle.js")).href;
-  const code = `import { readFileSync, writeFileSync } from "node:fs"; import { join } from "node:path"; import { createBundle } from ${JSON.stringify(moduleUrl)}; const [manifestPath, fixtureRoot, destination] = process.argv.slice(1); const manifest = JSON.parse(readFileSync(manifestPath, "utf8")); const evidence = new Map(manifest.evidence.map((entry) => [entry.path, readFileSync(join(fixtureRoot, entry.path.replaceAll("/", "\\\\")))])); writeFileSync(destination, createBundle(manifest, evidence));`;
+  const code = `import { readFileSync, writeFileSync } from "node:fs"; import { join } from "node:path"; import { createBundle } from ${JSON.stringify(moduleUrl)}; const [manifestPath, fixtureRoot, destination] = process.argv.slice(1); const manifest = JSON.parse(readFileSync(manifestPath, "utf8")); const evidence = new Map(manifest.evidence.map((entry) => [entry.path, readFileSync(join(fixtureRoot, ...entry.path.split("/")))])); writeFileSync(destination, createBundle(manifest, evidence));`;
   run("node", ["--input-type=module", "-e", code, join(fixtures, caseId, "manifest.json"), join(fixtures, caseId), output], typescript);
 }
 
@@ -52,8 +69,8 @@ function rustConsume(bundle) {
   run("cargo", ["run", "--quiet", "--", "verify", bundle], core);
 }
 
-if (!existsSync(join(typescript, "dist", "src", "bundle.js"))) throw new Error("TypeScript build missing; run npm.cmd run build first");
-if (!existsSync(pythonRuntime)) throw new Error(`Python runtime missing: ${pythonRuntime}`);
+if (!existsSync(join(typescript, "dist", "src", "bundle.js"))) throw new Error(`TypeScript build missing at ${typescript}; run npm.cmd run build first`);
+if (!existsSync(python)) throw new Error(`Python project missing at ${python}; set REPROPACK_PYTHON_PROJECT to its directory`);
 rmSync(outputRoot, { recursive: true, force: true }); mkdirSync(outputRoot, { recursive: true });
 const matrix = [];
 for (const caseId of cases) {

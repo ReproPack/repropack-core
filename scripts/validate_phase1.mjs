@@ -66,7 +66,10 @@ async function validateManifest(manifest, label, options = {}) {
   if (options.checkFiles) {
     for (const evidence of manifest.evidence) {
       if (evidence.size > 256 * 1024 * 1024) fail(`${label}: size exceeds configured per-entry limit`);
-      const file = join(options.fixtureDir, evidence.path.replaceAll("/", "\\"));
+      // Manifest paths are canonical POSIX-style paths. Node's path.join accepts
+      // those separators on Windows, while preserving them as separators on
+      // POSIX; converting them to backslashes breaks Linux fixture validation.
+      const file = join(options.fixtureDir, evidence.path);
       const bytes = await readFile(file);
       const digest = createHash("sha256").update(bytes).digest("hex");
       if (bytes.length !== evidence.size) fail(`${label}: ${evidence.path} size mismatch`);

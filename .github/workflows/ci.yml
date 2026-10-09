@@ -6,9 +6,15 @@ on:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Check required documentation
         shell: bash
         run: |
@@ -18,6 +24,7 @@ jobs:
           test -f PROJECT_STATE.md
           test -f ROADMAP.md
           node scripts/validate_phase1.mjs
+          node --test tests/validate_phase1.test.mjs
           ! grep -R -n -E 'TODO|TBD|coming soon' README.md docs PROJECT_STATE.md
       - name: Rust format
         run: cargo fmt -- --check
@@ -29,3 +36,36 @@ jobs:
         run: cargo metadata --locked --no-deps --format-version 1
       - name: Package validation
         run: cargo package --locked --allow-dirty --no-verify
+
+  interoperability:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ReproPack/repropack-typescript
+          path: repropack-typescript
+      - uses: actions/checkout@v4
+        with:
+          repository: ReproPack/repropack-python
+          path: repropack-python
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: repropack-typescript/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build TypeScript implementation
+        working-directory: repropack-typescript
+        run: npm ci && npm run build
+      - name: Run interoperability matrix
+        env:
+          REPROPACK_TYPESCRIPT: ${{ github.workspace }}/repropack-typescript
+          REPROPACK_PYTHON_PROJECT: ${{ github.workspace }}/repropack-python
+          REPROPACK_PYTHON: python
+        run: node scripts/phase8_interop.mjs

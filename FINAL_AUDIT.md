@@ -46,3 +46,11 @@ The v0.1 format does not promise byte-identical ZIP archives. Redaction detectio
 ## Release decision
 
 The repository evidence supports a v0.1.0 release candidate. No code path executes bundle content. Publishing tags, package artifacts, or hosted releases requires a separate explicit publication action.
+
+## Release-readiness correction addendum
+
+The original local release snapshot contained a portability defect in `scripts/validate_phase1.mjs`: canonical `/` evidence paths were converted to `\` before `path.join`, causing the Ubuntu run `37865758652` to fail while resolving `minimal-valid/evidence/message.txt`. The correction keeps canonical paths unchanged and adds a host-OS regression test covering valid fixtures and the unsafe-path case.
+
+The Phase 8 interoperability helper now uses platform-neutral path components, supports explicit `REPROPACK_PYTHON`, `REPROPACK_PYTHON_PROJECT`, and `REPROPACK_TYPESCRIPT` overrides, and performs platform-aware Python discovery with an actionable missing-runtime error. Hosted Ubuntu and Windows CI coverage is configured but has not yet run for the corrected local commits.
+
+This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; the corrected work is untagged until the maintainer chooses the release-tag strategy. The local core branch remains ahead of `origin/main`, and no synchronization, package publication, or hosted release has occurred.
