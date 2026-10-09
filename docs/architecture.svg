@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">ReproPack architecture</title>
+  <desc id="desc">The language-neutral ReproPack specification and fixtures connect to independent Rust, TypeScript, and Python implementations that produce and consume safe evidence bundles.</desc>
+  <defs><style>.bg{fill:#f7f9fc}.title{font:700 30px system-ui,sans-serif;fill:#132238}.sub{font:16px system-ui,sans-serif;fill:#526274}.label{font:700 18px system-ui,sans-serif;fill:#132238}.small{font:14px system-ui,sans-serif;fill:#526274}.box{stroke-width:2}.arrow{stroke:#7d8da3;stroke-width:3;fill:none;marker-end:url(#head)}</style><marker id="head" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#7d8da3"/></marker></defs>
+  <rect class="bg" width="1200" height="520" rx="24"/>
+  <text x="60" y="62" class="title">ReproPack — one format, three native implementations</text>
+  <text x="60" y="90" class="sub">Portable evidence bundles for inspect, verify, and safe extraction</text>
+  <rect x="380" y="125" width="440" height="110" rx="18" fill="#e7efff" stroke="#2563eb" class="box"/>
+  <text x="600" y="164" text-anchor="middle" class="label">Language-neutral specification</text>
+  <text x="600" y="191" text-anchor="middle" class="small">Manifest · canonical paths · hashes · redaction · limits</text>
+  <text x="600" y="214" text-anchor="middle" class="small">Shared schema and conformance fixtures</text>
+  <path class="arrow" d="M490 235 L210 340"/><path class="arrow" d="M600 235 L600 340"/><path class="arrow" d="M710 235 L990 340"/>
+  <rect x="65" y="340" width="290" height="105" rx="18" fill="#fff4dc" stroke="#f59e0b" class="box"/>
+  <text x="210" y="378" text-anchor="middle" class="label">Rust / Core</text><text x="210" y="405" text-anchor="middle" class="small">Reference model · CLI · ZIP operations</text><text x="210" y="427" text-anchor="middle" class="small">github.com/ReproPack/repropack-core</text>
+  <rect x="455" y="340" width="290" height="105" rx="18" fill="#e8f8f1" stroke="#10b981" class="box"/>
+  <text x="600" y="378" text-anchor="middle" class="label">TypeScript</text><text x="600" y="405" text-anchor="middle" class="small">Native Node.js SDK · stored ZIP</text><text x="600" y="427" text-anchor="middle" class="small">github.com/ReproPack/repropack-typescript</text>
+  <rect x="845" y="340" width="290" height="105" rx="18" fill="#f1eaff" stroke="#8b5cf6" class="box"/>
+  <text x="990" y="378" text-anchor="middle" class="label">Python</text><text x="990" y="405" text-anchor="middle" class="small">Native standard-library SDK</text><text x="990" y="427" text-anchor="middle" class="small">github.com/ReproPack/repropack-python</text>
+</svg>
