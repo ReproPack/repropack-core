@@ -37,8 +37,15 @@ pub fn redact_text(input: &str) -> RedactionResult {
     let mut private_key = false;
 
     for line in input.split_inclusive('\n') {
-        let content = line.strip_suffix('\n').unwrap_or(line);
-        let newline = if line.ends_with('\n') { "\n" } else { "" };
+        let (content, newline) = if let Some(content) = line.strip_suffix("\r\n") {
+            (content, "\r\n")
+        } else if let Some(content) = line.strip_suffix('\n') {
+            (content, "\n")
+        } else if let Some(content) = line.strip_suffix('\r') {
+            (content, "\r")
+        } else {
+            (line, "")
+        };
 
         if private_key {
             redacted = true;
@@ -210,6 +217,16 @@ mod tests {
         assert!(!text.contains("Bearer abc"));
         assert!(text.contains(MARKER));
         assert_eq!(result.warnings.len(), 2);
+    }
+
+    #[test]
+    fn redacts_crlf_private_key_without_retaining_body() {
+        let result = redact_text(
+            "-----BEGIN PRIVATE KEY-----\r\nsecret-body\r\n-----END PRIVATE KEY-----\r\n",
+        );
+        assert!(result.redacted);
+        assert_eq!(result.bytes, b"[REDACTED]\r\n[REDACTED]\r\n[REDACTED]\r\n");
+        assert!(!String::from_utf8_lossy(&result.bytes).contains("secret-body"));
     }
 
     #[test]

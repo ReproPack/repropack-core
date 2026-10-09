@@ -1,6 +1,6 @@
 # ReproPack 0.1 format specification
 
-**Status:** Phase 1 draft frozen for implementation review. The semantic contract below is the proposed v0.1 specification revision `0.1`; implementation conformance is not yet claimed. Changes after this point require a decision-log entry and fixture updates.
+**Status:** v0.1 semantic contract frozen for implementation review. The current Rust, TypeScript, and Python implementations are tested against the canonical semantic fixtures and the recorded interoperability matrix; this does not certify future implementations or deferred integrations. Changes after this point require a decision-log entry and fixture updates.
 
 ## 1. Normative language
 

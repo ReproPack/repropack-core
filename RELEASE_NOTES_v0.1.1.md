@@ -17,9 +17,11 @@ ReproPack v0.1.1 is the coordinated corrective release candidate for the languag
 
 The following hosted runs validate the corrected base commits that preceded the local version-only v0.1.1 candidate commits:
 
-- TypeScript hosted CI: [run 37919726963](https://github.com/ReproPack/repropack-typescript/actions/runs/37919726963)
-- Python hosted CI: [run 37919750244](https://github.com/ReproPack/repropack-python/actions/runs/37919750244)
-- Core hosted CI, including Ubuntu/Windows validation and 12 interoperability paths: [run 37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037)
+- TypeScript hosted CI for the synchronized pre-audit candidate: [run 37925435775](https://github.com/ReproPack/repropack-typescript/actions/runs/37925435775)
+- Python hosted CI for the synchronized pre-audit candidate: [run 37925450600](https://github.com/ReproPack/repropack-python/actions/runs/37925450600)
+- Core hosted CI, including Ubuntu/Windows validation and 12 interoperability paths, for the synchronized pre-audit candidate: [run 37925467982](https://github.com/ReproPack/repropack-core/actions/runs/37925467982)
+
+The audit branch `audit/full-repropack-2026-10-09` adds security and schema-validation corrections after those runs. Its hosted CI passed in [run 37932685340](https://github.com/ReproPack/repropack-core/actions/runs/37932685340), including both operating systems and all interoperability jobs; the audit PR remains open for review.
 
 Hosted CI for the final v0.1.1 candidate commits remains pending and is required before publication.
 

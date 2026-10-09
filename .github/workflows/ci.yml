@@ -3,6 +3,16 @@ name: core-ci
 on:
   push:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      typescript_ref:
+        description: "TypeScript revision for coordinated interoperability (branch, tag, or full SHA)"
+        required: false
+        default: main
+      python_ref:
+        description: "Python revision for coordinated interoperability (branch, tag, or full SHA)"
+        required: false
+        default: main
 
 jobs:
   docs:
@@ -23,6 +33,7 @@ jobs:
           test -f docs/SPECIFICATION.md
           test -f PROJECT_STATE.md
           test -f ROADMAP.md
+          node scripts/validate_workflow_refs.mjs
           node scripts/validate_phase1.mjs
           node --test tests/validate_phase1.test.mjs
           ! grep -R -n -E 'TODO|TBD|coming soon' README.md docs PROJECT_STATE.md
@@ -48,10 +59,12 @@ jobs:
         with:
           repository: ReproPack/repropack-typescript
           path: repropack-typescript
+          ref: ${{ inputs.typescript_ref || 'main' }}
       - uses: actions/checkout@v4
         with:
           repository: ReproPack/repropack-python
           path: repropack-python
+          ref: ${{ inputs.python_ref || 'main' }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -60,6 +73,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Record interoperability revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Testing Core revision: $(git rev-parse HEAD)"
+          echo "Testing TypeScript revision: $(git -C repropack-typescript rev-parse HEAD)"
+          echo "Testing Python revision: $(git -C repropack-python rev-parse HEAD)"
       - name: Build TypeScript implementation
         working-directory: repropack-typescript
         run: npm ci && npm run build

@@ -1,7 +1,8 @@
 //! ReproPack 0.1 typed manifest model.
 //!
-//! This crate intentionally stops at the Phase 2 data model boundary. It does
-//! not read ZIP archives, extract files, or execute bundle contents.
+//! This crate contains the validated data model, ZIP bundle operations, safe
+//! extraction, integrity verification, and the reference CLI. It never
+//! executes bundle contents.
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -149,6 +150,8 @@ pub enum ValidationError {
     InvalidTimestamp(String),
     #[error("capture tool name and version are required")]
     InvalidTool,
+    #[error("invalid incident metadata")]
+    InvalidIncident,
     #[error("extension key is not an absolute URI: {0}")]
     InvalidExtension(String),
     #[error("evidence must contain at least one entry")]
@@ -194,8 +197,38 @@ impl Manifest {
         if !is_utc_timestamp(&self.created_at) {
             return Err(ValidationError::InvalidTimestamp("created_at".into()));
         }
-        if self.capture.tool.name.is_empty() || self.capture.tool.version.is_empty() {
+        if self.capture.tool.name.is_empty()
+            || self.capture.tool.name.len() > 128
+            || self.capture.tool.version.is_empty()
+            || self.capture.tool.version.len() > 64
+            || self
+                .capture
+                .actor
+                .as_ref()
+                .is_some_and(|value| value.len() > 256)
+            || self
+                .capture
+                .source
+                .as_ref()
+                .is_some_and(|value| value.len() > 512)
+        {
             return Err(ValidationError::InvalidTool);
+        }
+        if self.incident.as_ref().is_some_and(|incident| {
+            incident
+                .title
+                .as_ref()
+                .is_some_and(|value| value.len() > 256)
+                || incident
+                    .summary
+                    .as_ref()
+                    .is_some_and(|value| value.len() > 8192)
+                || incident
+                    .category
+                    .as_ref()
+                    .is_some_and(|value| value.len() > 128)
+        }) {
+            return Err(ValidationError::InvalidIncident);
         }
         for key in self.extensions.keys() {
             if !is_absolute_uri(key) {
@@ -217,7 +250,7 @@ impl Manifest {
         let mut paths = HashSet::new();
         let mut previous: Option<&str> = None;
         for entry in &self.evidence {
-            if !is_safe_evidence_path(&entry.path) {
+            if entry.path.len() > 4096 || !is_safe_evidence_path(&entry.path) {
                 return Err(ValidationError::UnsafePath(entry.path.clone()));
             }
             if !paths.insert(&entry.path) {
@@ -227,7 +260,7 @@ impl Manifest {
                 return Err(ValidationError::UnsortedEvidence);
             }
             previous = Some(&entry.path);
-            if !is_media_type(&entry.media_type) {
+            if entry.media_type.len() > 255 || !is_media_type(&entry.media_type) {
                 return Err(ValidationError::InvalidMediaType(entry.media_type.clone()));
             }
             if !is_digest(&entry.sha256) {
@@ -329,7 +362,19 @@ fn two_digits(value: &[u8]) -> Option<u32> {
 }
 
 fn is_absolute_uri(value: &str) -> bool {
-    value.contains(':') && !value.chars().any(char::is_whitespace)
+    let Some((scheme, rest)) = value.split_once(':') else {
+        return false;
+    };
+    !scheme.is_empty()
+        && scheme
+            .chars()
+            .next()
+            .is_some_and(|character| character.is_ascii_alphabetic())
+        && scheme.chars().all(|character| {
+            character.is_ascii_alphanumeric() || matches!(character, '+' | '-' | '.')
+        })
+        && !rest.is_empty()
+        && !value.chars().any(char::is_whitespace)
 }
 
 fn is_safe_evidence_path(value: &str) -> bool {
@@ -479,6 +524,28 @@ mod tests {
         assert!(matches!(
             bad_redaction.validate(),
             Err(ValidationError::InvalidRedaction(_))
+        ));
+    }
+
+    #[test]
+    fn schema_metadata_lengths_and_uri_rules_are_enforced() {
+        let mut manifest = fixture("minimal-valid");
+        manifest.capture.tool.name = "x".repeat(129);
+        assert!(matches!(
+            manifest.validate(),
+            Err(ValidationError::InvalidTool)
+        ));
+        let mut manifest = fixture("minimal-valid");
+        manifest.evidence[0].media_type = "a".repeat(256);
+        assert!(matches!(
+            manifest.validate(),
+            Err(ValidationError::InvalidMediaType(_))
+        ));
+        let mut manifest = fixture("minimal-valid");
+        manifest.extensions.insert("not a uri".into(), Value::Null);
+        assert!(matches!(
+            manifest.validate(),
+            Err(ValidationError::InvalidExtension(_))
         ));
     }
 
