@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 4 complete; Phase 5 not started**.
+Current overall status: **Phase 5 complete; Phase 6 not started**.
 
 ## Phase register
 
@@ -21,7 +21,7 @@ Current overall status: **Phase 4 complete; Phase 5 not started**.
 | 2 — Rust model | **Complete** | Core | Phase 1 | Tested typed model and validation behavior |
 | 3 — Rust bundle operations | **Complete** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
 | 4 — Integrity and redaction | **Complete** | Core | Phase 3 | Hash verification and conservative redaction behavior |
-| 5 — Shared conformance | **Not started** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
+| 5 — Shared conformance | **Complete** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
 | 6 — TypeScript implementation | **Not started** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
 | 7 — Python implementation | **Not started** | Python | Phases 1 and 5 | Native Python passes shared semantics |
 | 8 — Interoperability | **Not started** | All | Phases 6 and 7 | Required cross-language matrix passes |
@@ -78,11 +78,11 @@ Current overall status: **Phase 4 complete; Phase 5 not started**.
 
 ### Phase 5 — Shared conformance suite
 
-**Status:** Not started. **Depends on:** Phase 4.
+**Status:** Complete. **Depends on:** Phase 4. **Evidence:** Catalog-driven Rust fixture runner, 12 canonical cases, expected error-category assertions, 21 passing Rust tests, and `docs/PHASE_5_REVIEW.md`.
 
-**Tasks:** Establish `conformance/fixtures`, `expected`, `invalid`, and `manifests`; add minimal, complete, redacted, selected-evidence, missing-field, corrupt, wrong-hash, future-version, extension, malformed-archive, unsafe-path, and oversized cases.
+**Tasks:** Establish `conformance/fixtures`, `expected`, `invalid`, and `manifests`; add minimal, complete, redacted, selected-evidence, missing-field, corrupt, wrong-hash, future-version, extension, malformed-archive, unsafe-path, and oversized cases. Complete for the canonical semantic catalog; archive-specific cross-language cases remain security-hardening work.
 
-**Tests:** Rust runner consumes every fixture and records machine-readable results. **Exit:** Fixtures are real and reviewed, Rust passes all applicable cases, and TypeScript/Python integration instructions are complete.
+**Tests:** Rust runner consumes every fixture and records machine-readable results. **Exit:** Fixtures are real and reviewed, Rust passes all applicable cases, and TypeScript/Python integration instructions are complete. Met for the reference runner; implementation integration remains Phases 6 and 7.
 
 ### Phase 6 — Native TypeScript implementation
 

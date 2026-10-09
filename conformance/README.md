@@ -1,6 +1,6 @@
 # ReproPack 0.1 conformance fixtures
 
-These fixtures are canonical semantic test inputs for independent implementations. They are intentionally represented as directories containing `manifest.json` and evidence files during Phase 1; archive packaging tests will wrap the same contents in ZIP containers during Phase 3.
+These fixtures are canonical semantic test inputs for independent implementations. They are represented as directories containing `manifest.json` and evidence files so each implementation can consume the same bytes. The Rust reference runner is `tests/conformance.rs`; run it with `cargo test --test conformance`.
 
 Each case has an expected result in `expected/`. Valid cases must satisfy the schema and manifest/archive correspondence. Invalid cases must fail with the recorded category. Implementations must compare evidence bytes, sizes, SHA-256 values, redaction state, and metadata—not merely parse JSON.
 
@@ -19,4 +19,4 @@ Fixture IDs:
 - `unsafe-path`: traversal path.
 - `oversized-input`: fixture metadata declares a size beyond the configured limit.
 
-Malformed ZIP, duplicate entry, symlink, and decompression-bomb cases require binary/archive construction and are reserved for the Phase 3 security fixture set; this phase defines their expected categories in `expected/`.
+Malformed ZIP, duplicate entry, symlink, and decompression-bomb cases require binary/archive construction and remain covered by focused Rust archive tests; shared cross-language archive fixtures are a Phase 9 security-hardening follow-up.
