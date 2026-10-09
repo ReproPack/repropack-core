@@ -12,7 +12,7 @@
 - Specification version: 0.1 (approved for implementation)
 - Implementation versions: none released
 - Conformance status: semantic fixtures exist; local validator and interoperability matrix pass on Windows; Linux/Windows hosted regression evidence is pending for the corrected commit
-- Release baseline: local `main` is `5abad374be8bce57d60978b923b8f9dec4fbfef5`, local `v0.1.0` points to it, and `main` is 12 commits ahead of `origin/main`; this readiness correction is currently uncommitted and must not move the existing tag
+- Release baseline: local `v0.1.0` still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; readiness correction commit `e51702a` is now after that tag on local `main`, remains unpushed, and did not move the tag
 - Local correction evidence: `node scripts/validate_phase1.mjs`, `node --test tests/validate_phase1.test.mjs`, Rust format, Clippy, 21 Rust tests, conformance, locked metadata, package validation, and the 12-path Phase 8 matrix pass on Windows; hosted Linux/Windows CI remains pending
 - Portability correction: Phase 1 fixture validation now keeps canonical forward-slash paths; Phase 8 uses platform-neutral path components and portable Python discovery with `REPROPACK_PYTHON` override
 - Registry readiness: crates.io requires an online dry-run; npm remains blocked by `private: true` and package-entry-point decisions; PyPI requires clean-environment installation and publisher/name verification
