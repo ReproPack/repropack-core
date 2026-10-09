@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 9 complete; Phase 10 not started**.
+Current overall status: **Phase 10 complete; Phase 11 not started**.
 
 ## Phase register
 
@@ -26,7 +26,7 @@ Current overall status: **Phase 9 complete; Phase 10 not started**.
 | 7 — Python implementation | **Complete** | Python | Phases 1 and 5 | Native Python passes shared semantics |
 | 8 — Interoperability | **Complete** | All | Phases 6 and 7 | Required cross-language matrix passes |
 | 9 — Security hardening | **Complete** | All | Phase 8 | Malformed-input and resource-limit audit passes |
-| 10 — Usability | **Not started** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
+| 10 — Usability | **Complete** | All | Phases 3, 6, 7 | Working examples and stable user-facing errors |
 | 11 — CI and packaging | **Not started** | All | Phase 9 | Real CI, package builds, and validation succeed |
 | 12 — Documentation and examples | **Not started** | All | Phase 10 | Fresh-user workflow works from clean environments |
 | 13 — Contributor readiness | **Not started** | All | Phase 11 | External contribution path is usable and tested |
@@ -110,9 +110,9 @@ Current overall status: **Phase 9 complete; Phase 10 not started**.
 
 ### Phase 10 — CLI and SDK usability
 
-**Status:** Not started. **Depends on:** Phases 3, 6, and 7.
+**Status:** Complete. **Depends on:** Phases 3, 6, and 7. **Evidence:** Stable Rust CLI exit/error contract, JSON mode, documented workflow smoke test, native SDK entry-point documentation, and `docs/PHASE_10_REVIEW.md`.
 
-**Tasks:** Stabilize commands and SDK names; provide inspect/validate/verify/extract examples; define exit codes and machine-readable errors; improve diagnostics without leaking evidence. **Exit:** Fresh-user workflows and failure behavior are tested.
+**Tasks:** Stabilize commands and SDK names; provide inspect/validate/verify/extract examples; define exit codes and machine-readable errors; improve diagnostics without leaking evidence. **Exit:** Fresh-user workflows and failure behavior are tested. Met for the current v0.1 surface.
 
 ### Phase 11 — CI and packaging
 
