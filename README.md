@@ -4,7 +4,7 @@ ReproPack is a language-neutral, inspectable evidence bundle for software failur
 
 ## Current status
 
-Phase 4 is next. The v0.1 manifest contract, schema, semantic fixtures, Rust typed model, ZIP operations, safe extraction, and initial CLI are complete; redaction hardening, full shared conformance, and release readiness are not yet implemented.
+Phase 4 is complete and Phase 5 is next. The v0.1 manifest contract, schema, semantic fixtures, Rust typed model, ZIP operations, safe extraction, initial CLI, integrity verification, and conservative redaction helpers are implemented; full shared conformance and release readiness are not yet complete.
 
 ## Repository map
 

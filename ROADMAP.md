@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 3 complete; Phase 4 not started**.
+Current overall status: **Phase 4 complete; Phase 5 not started**.
 
 ## Phase register
 
@@ -20,7 +20,7 @@ Current overall status: **Phase 3 complete; Phase 4 not started**.
 | 1 — Specification | **Complete** | Core, approved by project owner | Phase 0 | Frozen normative specification and canonical schema |
 | 2 — Rust model | **Complete** | Core | Phase 1 | Tested typed model and validation behavior |
 | 3 — Rust bundle operations | **Complete** | Core | Phase 2 | Safe create/read/inspect/validate/extract operations |
-| 4 — Integrity and redaction | **Not started** | Core | Phase 3 | Hash verification and conservative redaction behavior |
+| 4 — Integrity and redaction | **Complete** | Core | Phase 3 | Hash verification and conservative redaction behavior |
 | 5 — Shared conformance | **Not started** | Core plus all implementations | Phase 4 | Canonical fixtures and Rust fixture runner |
 | 6 — TypeScript implementation | **Not started** | TypeScript | Phases 1 and 5 | Native TypeScript passes shared semantics |
 | 7 — Python implementation | **Not started** | Python | Phases 1 and 5 | Native Python passes shared semantics |
@@ -70,11 +70,11 @@ Current overall status: **Phase 3 complete; Phase 4 not started**.
 
 ### Phase 4 — Integrity and conservative redaction
 
-**Status:** Not started. **Depends on:** Phase 3.
+**Status:** Complete. **Depends on:** Phase 3. **Evidence:** Integrity verification, conservative redaction helpers, manifest metadata updates, 19 passing Rust tests, lint/format checks, and `docs/PHASE_4_REVIEW.md`.
 
-**Tasks:** Recompute SHA-256 digests and lengths; define verification failures; implement explicit redaction and markers; add advisory secret-pattern warnings without claiming perfect detection; hash only post-redaction bytes.
+**Tasks:** Recompute SHA-256 digests and lengths; define verification failures; implement explicit redaction and markers; add advisory secret-pattern warnings without claiming perfect detection; hash only post-redaction bytes. Complete.
 
-**Tests:** Altered/missing content, wrong hashes, redaction, secret-like values, Unicode, binary data, and warning behavior. **Exit:** Integrity and redaction semantics match the specification and do not echo sensitive data.
+**Tests:** Altered/missing content, wrong hashes, redaction, secret-like values, Unicode, binary data, and warning behavior. **Exit:** Integrity and redaction semantics match the specification and do not echo sensitive data. Met; shared conformance remains Phase 5.
 
 ### Phase 5 — Shared conformance suite
 

@@ -430,4 +430,17 @@ mod tests {
             Err(BundleError::SizeMismatch(_)) | Err(BundleError::HashMismatch(_))
         ));
     }
+
+    #[test]
+    fn verification_rejects_same_size_content_with_wrong_hash() {
+        let mut output = Cursor::new(Vec::new());
+        output = create_bundle(output, &fixture_manifest(), &fixture_evidence()).unwrap();
+        let mut bundle =
+            read_bundle(Cursor::new(output.into_inner()), ReadLimits::default()).unwrap();
+        bundle.evidence.insert(
+            "evidence/message.txt".into(),
+            b"XeproPack minimal evidence.\n".to_vec(),
+        );
+        assert!(matches!(bundle.verify(), Err(BundleError::HashMismatch(_))));
+    }
 }

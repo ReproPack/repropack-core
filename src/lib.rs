@@ -9,6 +9,7 @@ use std::collections::{BTreeMap, HashSet};
 use thiserror::Error;
 
 pub mod bundle;
+pub mod redaction;
 
 pub const FORMAT: &str = "repropack";
 pub const SPEC_VERSION: &str = "0.1";
