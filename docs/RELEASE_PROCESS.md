@@ -7,3 +7,7 @@ Releases follow the checklist, not calendar pressure. Freeze the specification, 
 Canonical manifest evidence paths use `/` regardless of the host operating system. Validation and interoperability tooling must pass those paths to platform path APIs without hard-coding `\` separators. The core CI release gate runs the Phase 1 validator and Phase 8 interoperability matrix on both Ubuntu and Windows. The interoperability script accepts `REPROPACK_PYTHON` for an explicit Python executable, otherwise it discovers a suitable platform runtime; `REPROPACK_PYTHON_PROJECT` and `REPROPACK_TYPESCRIPT` may override sibling repository locations.
 
 The existing local `v0.1.0` tag is not moved when release-readiness fixes create later commits. If the corrected snapshot is approved for release, the maintainer must explicitly choose between creating a new release commit/tag or treating the existing tag as a superseded local candidate. No tag decision is implicit.
+
+## Artifact verification
+
+Build artifacts in clean output directories and record SHA-256 digests before publication. On Linux/macOS, use `sha256sum <artifact>`; on Windows PowerShell, use `Get-FileHash -Algorithm SHA256 <artifact>`. Verify the recorded digest after downloading the GitHub Release asset or registry artifact. Checksums are evidence of artifact identity, not evidence that a package is safe to execute.

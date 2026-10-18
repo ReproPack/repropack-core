@@ -112,16 +112,18 @@ pub fn read_bundle<R: Read + Seek>(reader: R, limits: ReadLimits) -> Result<Bund
     let mut total_bytes = 0_u64;
 
     for index in 0..archive.len() {
-        let entry = archive.by_index(index)?;
+        let raw_entry = archive.by_index_raw(index)?;
+        if raw_entry.encrypted() {
+            return Err(BundleError::EncryptedEntry(raw_entry.name().to_string()));
+        }
+        drop(raw_entry);
+        let mut entry = archive.by_index(index)?;
         let name = entry.name().to_string();
         if name.len() > limits.max_path_bytes || !is_safe_archive_path(&name) {
             return Err(BundleError::UnsafePath(name));
         }
         if !names.insert(name.clone()) {
             return Err(BundleError::DuplicateEntry(name));
-        }
-        if entry.encrypted() {
-            return Err(BundleError::EncryptedEntry(name));
         }
         if entry.is_dir() || is_special_file(&entry) {
             return Err(BundleError::UnsupportedEntryType(name));
@@ -136,11 +138,7 @@ pub fn read_bundle<R: Read + Seek>(reader: R, limits: ReadLimits) -> Result<Bund
         if total_bytes > limits.max_total_bytes {
             return Err(BundleError::LimitExceeded("total bytes".into()));
         }
-        let mut bytes = Vec::with_capacity(size.min(1024 * 1024) as usize);
-        let read_limit = size
-            .checked_add(1)
-            .ok_or_else(|| BundleError::LimitExceeded("entry size".into()))?;
-        entry.take(read_limit).read_to_end(&mut bytes)?;
+        let bytes = read_entry_bounded(&mut entry, size)?;
         if bytes.len() as u64 != size {
             return Err(BundleError::Malformed(format!("truncated entry: {name}")));
         }
@@ -162,6 +160,31 @@ pub fn read_bundle<R: Read + Seek>(reader: R, limits: ReadLimits) -> Result<Bund
     manifest.validate()?;
     ensure_correspondence(&manifest, evidence.keys())?;
     Ok(Bundle { manifest, evidence })
+}
+
+fn read_entry_bounded<R: Read>(reader: &mut R, size: u64) -> Result<Vec<u8>, BundleError> {
+    let read_limit = size
+        .checked_add(1)
+        .ok_or_else(|| BundleError::LimitExceeded("entry size".into()))?;
+    let mut limited = reader.take(read_limit);
+    let mut bytes = Vec::with_capacity(size.min(1024 * 1024) as usize);
+    let mut chunk = [0_u8; 64 * 1024];
+    loop {
+        let count = limited.read(&mut chunk)?;
+        if count == 0 {
+            break;
+        }
+        bytes.extend_from_slice(&chunk[..count]);
+        if bytes.len() as u64 > size {
+            return Err(BundleError::Malformed(
+                "entry expands beyond declared size".into(),
+            ));
+        }
+    }
+    if bytes.len() as u64 != size {
+        return Err(BundleError::Malformed("truncated entry".into()));
+    }
+    Ok(bytes)
 }
 
 pub fn read_bundle_file(path: impl AsRef<Path>, limits: ReadLimits) -> Result<Bundle, BundleError> {
@@ -404,11 +427,66 @@ mod tests {
     }
 
     #[test]
+    fn encrypted_entry_flag_is_rejected_before_content_use() {
+        let mut output = Cursor::new(Vec::new());
+        output = create_bundle(output, &fixture_manifest(), &fixture_evidence()).unwrap();
+        let mut bytes = output.into_inner();
+        let local = bytes
+            .windows(4)
+            .position(|window| window == [0x50, 0x4b, 0x03, 0x04])
+            .unwrap();
+        let central = bytes
+            .windows(4)
+            .position(|window| window == [0x50, 0x4b, 0x01, 0x02])
+            .unwrap();
+        let local_flags = u16::from_le_bytes([bytes[local + 6], bytes[local + 7]]) | 1;
+        let central_flags = u16::from_le_bytes([bytes[central + 8], bytes[central + 9]]) | 1;
+        bytes[local + 6..local + 8].copy_from_slice(&local_flags.to_le_bytes());
+        bytes[central + 8..central + 10].copy_from_slice(&central_flags.to_le_bytes());
+        assert!(matches!(
+            read_bundle(Cursor::new(bytes), ReadLimits::default()),
+            Err(BundleError::EncryptedEntry(_))
+        ));
+    }
+
+    #[test]
+    fn compressed_entry_limit_is_rejected_before_materialization() {
+        let manifest = fixture_manifest();
+        let mut evidence = BTreeMap::new();
+        evidence.insert("evidence/message.txt".into(), vec![b'x'; 1024 * 1024]);
+        let mut output = Cursor::new(Vec::new());
+        output = create_bundle(output, &manifest, &evidence).unwrap();
+        assert!(matches!(
+            read_bundle(
+                Cursor::new(output.into_inner()),
+                ReadLimits {
+                    max_entry_bytes: 4096,
+                    ..ReadLimits::default()
+                }
+            ),
+            Err(BundleError::LimitExceeded(_))
+        ));
+    }
+
+    #[test]
     fn malformed_archive_is_rejected_without_content_use() {
         assert!(matches!(
             read_bundle(Cursor::new(b"not a zip".to_vec()), ReadLimits::default()),
             Err(BundleError::Zip(_))
         ));
+    }
+
+    #[test]
+    fn deterministic_malformed_inputs_never_panic() {
+        let mut state = 0x9e37_79b9_u32;
+        for length in 0..512 {
+            let mut bytes = Vec::with_capacity(length);
+            for _ in 0..length {
+                state = state.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
+                bytes.push((state >> 24) as u8);
+            }
+            let _ = read_bundle(Cursor::new(bytes), ReadLimits::default());
+        }
     }
 
     #[test]

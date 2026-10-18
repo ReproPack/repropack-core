@@ -6,6 +6,8 @@ The v0.1.1 local release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.
 - [x] Native Rust, TypeScript, and Python implementations.
 - [x] Shared conformance and required interoperability paths.
 - [x] Malformed archive, traversal, limit, integrity, and redaction tests.
+- [x] Encrypted-entry, compression-bomb-sized entry, and deterministic malformed-input regression tests.
+- [x] CI failure-evidence privacy/retention contract validated locally; selected files remain subject to human review.
 - [x] Independent CI workflows and package/build validation.
 - [x] Documentation examples and clean-environment workflow.
 - [x] Version consistency at `0.1.1` in authoritative declarations, lock metadata, and rebuilt local artifacts.
@@ -13,8 +15,17 @@ The v0.1.1 local release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.
 - [x] Local Windows validator and interoperability regression checks pass.
 - [x] Linux validator and interoperability checks pass on the corrected commit in hosted CI: [run 37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).
 - [x] Windows fixture bytes remain unchanged and Windows validator/interoperability checks pass on the corrected commit in hosted CI: [run 37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).
-- [x] Hosted CI passes for the corrected release snapshot, including Rust formatting, lint, tests, metadata, and package validation.
+- [x] Hosted CI passes for the previously synchronized corrected snapshot, including Rust formatting, lint, tests, metadata, package validation, and interoperability.
+- [ ] Hosted CI reruns the new security-hardening changes on Ubuntu and Windows.
 - [ ] Owner chooses whether to preserve the local pre-correction v0.1.0 tags and release 0.1.1, or explicitly approve recreating v0.1.0 after confirming no external consumption.
 - [ ] Approved tags are created on the exact release commits; no current remote tags exist.
 - [ ] Release notes, artifacts, SHA-256 checksums, and GitHub Release contents are reviewed and approved.
 - [ ] crates.io and PyPI publication are separately approved; npm remains blocked by its private: true setting and entry-point decision.
+
+## Funding-readiness gates
+
+- [x] Submission dossier distinguishes verified, unpublished, planned, and unknown claims: [docs/FUNDING_READINESS.md](docs/FUNDING_READINESS.md).
+- [x] Contributor backlog is scoped locally in [BACKLOG.md](BACKLOG.md); no artificial issue count is claimed.
+- [ ] Maintainer identifies the exact Drips Wave or RetroPGF round and reviews the previous rejection reason.
+- [ ] Owner approves whether and how `repropack-core` is claimed as the single Drips Project, including `FUNDING.json`, wallet, maintainers, and dependency splits.
+- [ ] A specific GrantFox campaign and official application route are verified before any submission claim.
