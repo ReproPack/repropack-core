@@ -78,7 +78,7 @@ The full walkthrough is in the [tutorial](docs/TUTORIAL.md). For automation, use
 
 ## Current status
 
-Phases 0–14 are complete as a local release-candidate foundation. The corrected v0.1.1 candidate is synchronized to GitHub and its required hosted CI passed. Public tags, GitHub Releases, and registry publication remain separate release actions; the existing local v0.1.0 tags are preserved.
+Phases 0–14 are complete. ReproPack v0.1.1 is released on GitHub for [Core](https://github.com/ReproPack/repropack-core/releases/tag/v0.1.1), [TypeScript](https://github.com/ReproPack/repropack-typescript/releases/tag/v0.1.1), and [Python](https://github.com/ReproPack/repropack-python/releases/tag/v0.1.1), with checksum-verified release assets. crates.io and PyPI publication remain owner-controlled, and the TypeScript package remains intentionally private for npm.
 
 ## License
 
