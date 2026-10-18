@@ -67,10 +67,13 @@ The full walkthrough is in the [tutorial](docs/TUTORIAL.md). For automation, use
 
 - [Specification](docs/SPECIFICATION.md) — normative format and semantics.
 - [Architecture](docs/ARCHITECTURE.md) — repository boundaries and implementation roles.
+- [Project overview](docs/PROJECT_OVERVIEW.md) — one-page map of the project and its evidence boundaries.
+- [Impact evidence](docs/IMPACT_EVIDENCE.md) — verified adoption evidence and clearly marked gaps.
 - [Format examples](docs/FORMAT_EXAMPLES.md) — valid manifest and bundle shapes.
 - [Conformance](docs/CONFORMANCE.md) — shared fixtures and expected behavior.
 - [Security](SECURITY.md) — threat model, limits, and reporting guidance.
 - [Development and testing](docs/DEVELOPMENT_MODEL.md) — contributor workflow.
+- [Contributor work packages](docs/CONTRIBUTOR_WORK_PACKAGES.md) — self-contained future work without private context.
 - [Roadmap](ROADMAP.md) — evidence-based project phases.
 - [Release checklist](RELEASE_CHECKLIST.md) — preparation and publication gates.
 - [CI integration example](docs/CI_INTEGRATION.md) — an optional, safe failure-evidence workflow.
