@@ -2,7 +2,7 @@
 
 Audit date: 2026-10-09  
 Specification: `0.1`  
-Implementation version: `0.1.0`
+Implementation version: `0.1.1` local release candidate; the historical v0.1.0 tag remains unchanged.
 
 ## Release gate
 

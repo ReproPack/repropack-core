@@ -12,7 +12,9 @@
   <a href="docs/SPECIFICATION.md"><img src="https://img.shields.io/badge/format-ReproPack%200.1-6b4fbb.svg" alt="ReproPack format 0.1"></a>
 </p>
 
-ReproPack gives teams a small, deterministic format for sharing the evidence needed to understand a failure: logs, test output, metadata, and explicitly selected files. The bundle can be inspected and verified without running its contents.
+ReproPack gives developers and maintainers a small, deterministic format for handing a software failure from one tool or environment to another. It packages selected logs, test output, metadata, and files into an inspectable bundle whose paths, sizes, and SHA-256 digests can be checked without running the bundle.
+
+It is for developers debugging CI failures, maintainers reviewing bug reports, and tool authors that need a common evidence format across Rust, Node.js, Python, and future implementations. It is not a hosted debugging service: the bundle is a portable evidence record, not an execution recipe.
 
 ## What this repository owns
 
@@ -31,6 +33,8 @@ The native implementations are independent repositories:
 | TypeScript | Node.js applications and tooling | [repropack-typescript](https://github.com/ReproPack/repropack-typescript) |
 | Python | Python automation and analysis | [repropack-python](https://github.com/ReproPack/repropack-python) |
 
+Use this Core repository when you need the specification, schema, canonical fixtures, Rust CLI, compatibility rules, or release process. Use the TypeScript or Python repository when you are embedding ReproPack in that language. Each implementation reads the shared contract and fixtures; neither implementation imports or invokes Rust.
+
 ## Why ReproPack?
 
 Reproduction artifacts are often scattered across terminals, CI logs, temporary directories, and issue comments. ReproPack makes the handoff explicit and auditable:
@@ -41,6 +45,8 @@ Reproduction artifacts are often scattered across terminals, CI logs, temporary 
 4. validate, verify, and extract safely in another environment.
 
 The format is transport, not execution. ReproPack does not replay commands, reconstruct environments, guarantee that evidence contains no secrets, or create a sandbox.
+
+Unlike ordinary logs or CI artifacts, a bundle carries an explicit manifest and post-redaction integrity metadata. Unlike a bug report, it is machine-readable and can be consumed by independent implementations. Unlike a crash dump or replay system, it does not capture a complete process state and cannot reproduce a program by itself.
 
 ## Quick start
 
@@ -67,6 +73,8 @@ The full walkthrough is in the [tutorial](docs/TUTORIAL.md). For automation, use
 - [Development and testing](docs/DEVELOPMENT_MODEL.md) — contributor workflow.
 - [Roadmap](ROADMAP.md) — evidence-based project phases.
 - [Release checklist](RELEASE_CHECKLIST.md) — preparation and publication gates.
+- [CI integration example](docs/CI_INTEGRATION.md) — an optional, safe failure-evidence workflow.
+- [Funding and contributor dossier](docs/FUNDING_READINESS.md) — verified evidence and submission boundaries.
 
 ## Current status
 

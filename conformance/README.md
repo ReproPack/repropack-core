@@ -19,4 +19,4 @@ Fixture IDs:
 - `unsafe-path`: traversal path.
 - `oversized-input`: fixture metadata declares a size beyond the configured limit.
 
-Malformed ZIP, duplicate entry, symlink, and decompression-bomb cases require binary/archive construction and remain covered by focused Rust archive tests; shared cross-language archive fixtures are a Phase 9 security-hardening follow-up.
+Malformed ZIP, duplicate-entry, symlink, and decompression-bomb cases require binary/archive construction and remain covered by focused implementation tests. They are not claimed as universal cross-language certification; additional shared archive fixtures remain follow-up work.

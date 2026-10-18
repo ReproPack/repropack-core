@@ -18,3 +18,11 @@ The v0.1.1 local release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.
 - [ ] Approved tags are created on the exact release commits; no current remote tags exist.
 - [ ] Release notes, artifacts, SHA-256 checksums, and GitHub Release contents are reviewed and approved.
 - [ ] crates.io and PyPI publication are separately approved; npm remains blocked by its private: true setting and entry-point decision.
+
+## Funding-readiness gates
+
+- [x] Submission dossier distinguishes verified, unpublished, planned, and unknown claims: [docs/FUNDING_READINESS.md](docs/FUNDING_READINESS.md).
+- [x] Contributor backlog is scoped locally in [BACKLOG.md](BACKLOG.md); no artificial issue count is claimed.
+- [ ] Maintainer identifies the exact Drips Wave or RetroPGF round and reviews the previous rejection reason.
+- [ ] Owner approves whether and how `repropack-core` is claimed as the single Drips Project, including `FUNDING.json`, wallet, maintainers, and dependency splits.
+- [ ] A specific GrantFox campaign and official application route are verified before any submission claim.

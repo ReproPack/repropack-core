@@ -95,7 +95,7 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 
 ## Required manual GitHub actions
 
-1. Review the open [Core PR #1](https://github.com/ReproPack/repropack-core/pull/1), [TypeScript PR #1](https://github.com/ReproPack/repropack-typescript/pull/1), and [Python PR #1](https://github.com/ReproPack/repropack-python/pull/1).
+1. Review the merged [Core PR #1](https://github.com/ReproPack/repropack-core/pull/1), [TypeScript PR #1](https://github.com/ReproPack/repropack-typescript/pull/1), and [Python PR #1](https://github.com/ReproPack/repropack-python/pull/1); verify the corrected commits are present on each public `main` branch.
 2. Confirm branch protection/rulesets through the GitHub UI or organization-admin API access.
 3. Add an organization description, profile README, repository topics, and homepages if desired; these are presentation decisions, not code fixes.
 4. Merge only after maintainer review confirms the hosted CI evidence and, if coordinated candidate revisions are required, a manually dispatched run with all explicit revision inputs.
@@ -107,6 +107,6 @@ GrantFox is verified as an open-source contribution ecosystem/platform with issu
 
 1. **Is the specification language-neutral?** Yes at the normative contract level: ZIP/JSON/schema/fixture semantics are independent of Rust, and the implementations do not invoke one another at runtime.
 2. **Do all three implementations satisfy the same supported contract?** For the current canonical fixtures and two valid interoperability fixtures, yes; local audit-branch tests and all 12 matrix paths pass. This is not a universal-input certification.
-3. **What remains untested or potentially failing?** The malformed ZIP/parser cases listed above, a post-correction coordinated dispatch using explicit audit-branch revisions, registry ownership, Drips app state, and organization rulesets.
+3. **What remains untested or potentially failing?** The malformed ZIP/parser cases listed above, registry ownership, Drips app state, and organization rulesets. The explicit post-correction coordinated dispatch passed on both Ubuntu and Windows in Core run [37936202912](https://github.com/ReproPack/repropack-core/actions/runs/37936202912).
 4. **What prevents a clean v0.1.1 release?** Audit-branch maintainer review/merge, the old-tag decision, registry approvals and package-specific gates, and the TypeScript npm-publication decision.
 5. **What must be fixed manually in GitHub?** Verify or configure rulesets, optionally improve organization/repository metadata, publish audit branches/open PRs, review/merge them, then perform separately approved release/tag/registry actions.
