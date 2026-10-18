@@ -2,6 +2,8 @@
 
 These are real, bounded work items. A contributor should be able to start from the issue text and repository documentation without private maintainer context.
 
+Detailed, issue-free preparation packages with acceptance criteria are maintained in [docs/CONTRIBUTOR_WORK_PACKAGES.md](docs/CONTRIBUTOR_WORK_PACKAGES.md). No GitHub issue is implied by these documents.
+
 ## High-value implementation work
 
 ### Streaming verification for large bundles
