@@ -6,6 +6,8 @@
 
 - Corrected canonical fixture path handling and preserved fixture evidence bytes across Windows checkouts.
 - Corrected portable Phase 8 runtime and cross-language path handling.
+- Added encrypted-entry, compression-bomb, and deterministic malformed-input tests.
+- Added bounded chunked ZIP reads and CI evidence privacy/retention validation.
 - Recorded successful hosted Ubuntu and Windows validation for the coordinated implementation set.
 
 ## 0.1.0 - 2026-10-09
