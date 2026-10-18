@@ -10,7 +10,7 @@ This roadmap is the execution source of truth. Status is evidence-based and must
 - **Blocked** — progress requires a specific external decision, permission, or dependency recorded in `PROJECT_STATE.md`.
 - **Deferred** — intentionally postponed; the reason and revisit condition are documented.
 
-Current overall status: **Phase 14 complete; v0.1.1 release preparation in progress; post-release work not started**.
+Current overall status: **Phase 14 complete; v0.1.1 GitHub Releases complete; registry publication partial; post-release work not started**.
 
 ## Phase register
 
@@ -134,7 +134,7 @@ Current overall status: **Phase 14 complete; v0.1.1 release preparation in progr
 
 ### Phase 14 — v0.1 release and coordinated release preparation
 
-**Status:** Complete as a local release-candidate foundation; v0.1.1 metadata and artifact preparation is in progress. **Depends on:** Phases 8–13. **Evidence:** `FINAL_AUDIT.md`, coordinated hosted CI, release checklist, corrected implementation commits, and preserved local `v0.1.0` tags. External publication remains intentionally separate.
+**Status:** Complete for the coordinated GitHub release; registry publication remains separate and owner-controlled. **Depends on:** Phases 8–13. **Evidence:** `FINAL_AUDIT.md`, coordinated hosted CI, release checklist, corrected implementation commits, preserved local `v0.1.0` tags, remote `v0.1.1` tags, and GitHub Release assets/checksums.
 
 **Tasks:** Freeze versions; complete `FINAL_AUDIT.md`; audit repositories, examples, CI, security, conformance, package builds, and documentation; prepare release notes and tags. **Exit:** Every P0 criterion has evidence and no unfinished feature is presented as complete. Met for the local release candidate.
 

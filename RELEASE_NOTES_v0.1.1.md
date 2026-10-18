@@ -1,6 +1,6 @@
-# ReproPack v0.1.1 — Draft Release Notes
+# ReproPack v0.1.1 — Release Notes
 
-Status: local draft; not released or published.
+Status: released on GitHub; registry publication is separate and not complete.
 
 ReproPack v0.1.1 is the coordinated corrective release candidate for the language-neutral evidence-bundle format and its native Rust, TypeScript, and Python implementations.
 
@@ -37,4 +37,4 @@ The ReproPack specification remains version 0.1. Readers reject unsupported vers
 
 ## Publication status
 
-This is a coordinated release draft pending the v0.1.1 tags and GitHub Releases. No package has been published. npm publication remains blocked while the package is private and its public entry-point configuration is undecided.
+This coordinated release is tagged `v0.1.1` in all three repositories and published as GitHub Releases with checksum-verified assets. crates.io and PyPI publication remain pending publisher credentials and owner approval. npm publication remains blocked while the package is private and its public entry-point configuration is undecided.
