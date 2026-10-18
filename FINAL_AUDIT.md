@@ -53,7 +53,7 @@ The original local release snapshot contained a portability defect in `scripts/v
 
 The Phase 8 interoperability helper now uses platform-neutral path components, supports explicit `REPROPACK_PYTHON`, `REPROPACK_PYTHON_PROJECT`, and `REPROPACK_TYPESCRIPT` overrides, and performs platform-aware Python discovery with an actionable missing-runtime error. Hosted Ubuntu and Windows CI coverage passed in run [37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037).
 
-This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`; the corrected synchronized `main` is `08807da720abeca2d685993ee14978b36e499192`. No remote tags, package publication, or hosted release exists.
+This addendum does not change the existing `v0.1.0` tag. The tag still points to `5abad374be8bce57d60978b923b8f9dec4fbfef5`. The corrected coordinated v0.1.1 mains are TypeScript `611775e93815ee087dfdb5d47249163f6bf00f76`, Python `3aa2f0ccfc134dfa0c1e0a7986bcd80c387fe893`, and Core `a1329d436625f43bb8f4fdb4e7eabec4bdaea6e1`; each has a remote `v0.1.1` tag and GitHub Release.
 
 ## Post-CI failure correction
 
@@ -72,15 +72,14 @@ Recommendations:
 
 - Preserve the old local tags and release corrected code as 0.1.1 if external consumption of the old tags cannot be ruled out.
 - Recreate v0.1.0 only if the owner explicitly confirms the old tags were never externally consumed and accepts the tag replacement risk.
-- Prepare coordinated release notes, exact artifact checksums, and GitHub Releases after the tag/version decision.
+- Registry publication remains a separate owner-controlled action. GitHub Release assets and checksums are available from the three v0.1.1 Releases.
 
 Owner decisions required:
 
-- Coordinated version and tag strategy.
-- crates.io and PyPI publication approval and publisher/name confirmation.
+- crates.io and PyPI publication approval, publisher credentials, and name confirmation.
 - Whether TypeScript becomes public; if yes, approval to change private: true and finalize package entry points/files.
 - GitHub Release creation and final artifact contents.
 
 ## v0.1.1 preparation note
 
-The corrected coordinated snapshot is now prepared locally as version 0.1.1. Authoritative package metadata and lock metadata were updated with repository tooling; local TypeScript, Python, and Rust package validation produced 0.1.1 outputs. This is preparation evidence only: the existing local v0.1.0 tags remain unchanged, no v0.1.1 tag exists, and no release or package has been published.
+The corrected coordinated snapshot is released as v0.1.1 on GitHub. The existing v0.1.0 tags remain unchanged. Core, TypeScript, and Python release assets were built locally and uploaded with SHA-256 checksum files. crates.io and PyPI publication remain unperformed because publisher credentials were not configured; npm remains intentionally private.
