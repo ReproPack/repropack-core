@@ -82,3 +82,15 @@ cargo run -- verify target/minimal.rpk
 ```
 
 For unsafe, corrupted, wrong-hash, and oversized inputs, use the canonical cases in `conformance/fixtures` and the fixture runner described in [CONFORMANCE.md](CONFORMANCE.md).
+
+The static safety contract for this example is checked with:
+
+```bash
+node scripts/validate_ci_integration.mjs
+```
+
+This validates the documented read-only permission, failure-only trigger,
+credentialless checkout, seven-day retention, upload failure behavior, and
+single-bundle artifact scope. It does not prove that a repository's selected
+files are free of secrets; human review remains required before enabling the
+integration.
