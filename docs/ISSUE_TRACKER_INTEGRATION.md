@@ -1,6 +1,6 @@
 # Issue-tracker integration contract
 
-This document defines the safe boundary for attaching a ReproPack bundle to an issue. It is an integration contract, not an active connector, and it does not create or modify issues.
+This document defines the safe boundary for attaching a ReproPack bundle to an existing issue. The repository now includes a local preview generator for GitHub Issues, Jira, and Linear. It never calls a tracker API, creates an issue, modifies an issue, or uses a tracker token.
 
 ## Common flow
 
@@ -30,6 +30,22 @@ The bundle itself remains an ordinary artifact. No tracker integration may execu
 - Make retention and deletion behavior visible to the user.
 - Treat all issue text and attachments as potentially public.
 
+## Local preview generator
+
+Generate a reviewable payload for an existing issue without network access:
+
+```bash
+node scripts/issue_tracker_preview.mjs input.json preview.json
+```
+
+The input must identify an existing issue and include the repository, workflow, exact commit, run URL, bundle URL, SHA-256 digest, and retention date. The output is explicitly marked `mode: "preview"`, `network_request: false`, and `creates_issue: false`. The safety and validation contract is tested with:
+
+```bash
+node scripts/test_issue_tracker_preview.mjs
+```
+
+The preview is the supported integration boundary for now. A maintainer may review and manually attach its contents to an existing issue; no automated tracker mutation is performed.
+
 ## Implementation order
 
-The GitHub Actions capture workflow is the first reference integration. Jira and Linear adapters should be added only after a maintainer selects an API client, token scope, retention policy, and test workspace. Until then, this contract is the complete supported boundary and no live tracker credentials are used.
+The GitHub Actions capture workflow and the offline preview generator are the reference integrations. Live Jira and Linear API adapters remain intentionally deferred until a maintainer selects an API client, token scope, retention policy, and test workspace. No live tracker credentials are used.
