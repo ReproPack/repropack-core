@@ -75,7 +75,7 @@ No implementation executes bundle content. The current six directed paths agree 
 
 - Core package metadata and offline package validation pass; crates.io name/owner availability and publication require a separate registry check and owner approval.
 - Python wheel/sdist and installed-package checks must be rerun on the audit branch; PyPI name ownership/availability is not inferred from a 404 and publication requires owner approval.
-- TypeScript remains `private: true`; npm publication and entry-point/export decisions remain blocked on explicit owner approval.
+- TypeScript is public as `repropack-typescript@0.1.1`; its root entry point, exports, declarations, and clean consumer installation were verified.
 - Existing local `v0.1.0` tags remain historical pre-correction tags. Do not move them without explicit confirmation that they were never externally consumed. A corrected coordinated release should use an owner-approved new version/tag strategy.
 - Audit branches have passed hosted CI and require independent maintainer review before merging. No direct `main` push, tag, GitHub Release, or package publication is authorized by this report.
 

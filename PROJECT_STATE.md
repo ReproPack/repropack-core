@@ -1,25 +1,25 @@
 # Project state
 
-- Current phase: v0.1.1 GitHub release complete; registry publication pending
+- Current phase: v0.1.1 GitHub, npm, and PyPI releases complete; crates.io pending
 - Current repository: repropack-core (coordination), with synchronized implementation plans in TypeScript and Python repositories
 - Phase status: technically validated; coordinated publication decisions remain owner-controlled
 - Last completed phase: Phase 14 - v0.1 release candidate foundation
 - Current objective: finish local release-readiness correction and preserve the post-release integration deferral
 - Completed work: Phase 1 specification and fixtures; Rust typed model; ZIP writer/reader; bounded archive checks; correspondence validation; verification; safe extraction; CLI operations; conservative redaction helpers; post-redaction metadata updates; catalog-driven conformance runner; native TypeScript and Python implementations; six-direction Rust/TypeScript/Python exchange matrix; malformed-input and resource-limit security tests; stable CLI exit/error contract; JSON output mode; real multi-language CI; package validation; dependency audit; tutorial; real minimal example; format examples; troubleshooting; migration guidance; contributor templates; maintainer/design/compatibility/security guidance; fixture contribution instructions; final audit; release notes; historical v0.1.0 version alignment; and preserved local v0.1.0 tags
-- Remaining work: publish approved crates.io/PyPI packages if owner credentials and name ownership are confirmed; keep npm blocked pending its public-package decision; defer post-release integrations
+- Remaining work: publish the approved crates.io package if publisher credentials and crate ownership are confirmed; defer post-release integrations
 - Known blockers: local Linux validation is unavailable in this Windows environment; system Python and npm/pnpm PowerShell shims are unavailable, so isolated Python and `npm.cmd` runtimes are used locally
 - Known risks: independent implementer review remains recommended; the public APIs still materialize bounded evidence bytes, TypeScript has no true streaming consumer API, secret detection is heuristic, and external security review remains outstanding
 - Specification version: 0.1 (approved for implementation)
-- Implementation versions: 0.1.1; GitHub release assets are published, registry publication is not complete
+- Implementation versions: 0.1.1; GitHub release assets, npm package, and PyPI package are published; crates.io publication remains pending
 - Conformance status: semantic fixtures exist; local validator and interoperability matrix pass on Windows; corrected Linux/Windows hosted regression evidence is complete
 - Hosted CI correction: run `37918806077` exposed Windows checkout normalization; the focused `.gitattributes` rule corrected it. Run [37919776037](https://github.com/ReproPack/repropack-core/actions/runs/37919776037) passed Phase 1 validation, Rust checks, and all 12 interoperability paths on both Ubuntu and Windows
 - Release baseline: synchronized `main` is TypeScript `611775e93815ee087dfdb5d47249163f6bf00f76`, Python `3aa2f0ccfc134dfa0c1e0a7986bcd80c387fe893`, and Core `a1329d436625f43bb8f4fdb4e7eabec4bdaea6e1`; remote `v0.1.1` tags and GitHub Releases exist for all three; local annotated `v0.1.0` still targets `5abad374be8bce57d60978b923b8f9dec4fbfef5`
 - Local correction evidence: validator, regression test, Rust format, Clippy, 21 Rust tests, conformance, locked metadata, package validation, and the 12-path Phase 8 matrix pass on Windows; hosted Linux/Windows evidence is recorded above
 - Portability correction: Phase 1 fixture validation now keeps canonical forward-slash paths; Phase 8 uses platform-neutral path components and portable Python discovery with `REPROPACK_PYTHON` override
-- Registry readiness: crates.io dry-run passes but no publisher credentials are configured; Python wheel/sdist build and isolated installation pass but PyPI publisher credentials/name confirmation are absent; npm remains blocked by `private: true` and package-entry-point decisions
+- Registry readiness: crates.io dry-run passes but publication is pending; Python `repropack==0.1.1` and TypeScript `repropack-typescript@0.1.1` are published and verified from their registries
 - Funding readiness: Drips round/registration and GrantFox campaign/application status remain later tasks; no wallet, `FUNDING.json`, campaign, or application action is authorized here
 - Funding dossier: [docs/FUNDING_READINESS.md](docs/FUNDING_READINESS.md) is prepared locally; it makes no approval, adoption, release, or funding claim. Core is the proposed lead project and TypeScript/Python are linked implementations.
 - Local hardening evidence: encrypted-entry and compression-bomb fixtures, deterministic malformed-input tests, bounded chunked reads in Rust/Python, and the CI integration privacy/retention validator pass locally and in hosted CI.
 - Next phase: post-release maintenance and deferred integration review; Phases 15–18 remain deferred
-- Next recommended action: decide whether to provide crates.io/PyPI publisher credentials and whether the TypeScript package should ever become public
+- Next recommended action: decide whether to provide crates.io publisher credentials; keep post-release integrations deferred
 - Full organization audit: branch `audit/full-repropack-2026-10-09` contains confirmed extraction, decompression, schema-validation, and CRLF-redaction fixes. CI now uses sibling `main` for ordinary pushes/PRs and explicit `workflow_dispatch` revisions for coordinated testing; it no longer assumes every repository has the same feature branch. See [AUDIT_REPORT.md](AUDIT_REPORT.md). The corrected v0.1.1 snapshot is tagged and released on GitHub; registry publication remains separate.
