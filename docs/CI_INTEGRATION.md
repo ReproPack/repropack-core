@@ -1,5 +1,7 @@
 # Optional CI failure-evidence integration
 
+The copyable reference workflow is [examples/github-actions/failure-evidence.yml](../examples/github-actions/failure-evidence.yml). The contract below explains the same safety boundary. Issue-tracker attachment is intentionally a separate, explicit step; see [the tracker integration contract](ISSUE_TRACKER_INTEGRATION.md).
+
 This example shows a deliberately narrow GitHub Actions integration. It captures only files selected by the workflow author, validates the bundle, verifies its hashes, and uploads the result as an ordinary artifact. It does not collect the whole workspace, execute bundle contents, reconstruct an environment, or guarantee that selected files contain no secrets.
 
 ## Example workflow

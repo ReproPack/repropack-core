@@ -1,0 +1,96 @@
+name: release-conformance
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      core_ref:
+        description: "Core branch, tag, or full SHA to test"
+        required: true
+      typescript_ref:
+        description: "TypeScript branch, tag, or full SHA to test"
+        required: true
+      python_ref:
+        description: "Python branch, tag, or full SHA to test"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Resolve exact revisions
+        id: refs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "core_ref=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "typescript_ref=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "python_ref=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "core_ref=${{ inputs.core_ref }}" >> "$GITHUB_OUTPUT"
+            echo "typescript_ref=${{ inputs.typescript_ref }}" >> "$GITHUB_OUTPUT"
+            echo "python_ref=${{ inputs.python_ref }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.refs.outputs.core_ref }}
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: ReproPack/repropack-typescript
+          path: repropack-typescript
+          ref: ${{ steps.refs.outputs.typescript_ref }}
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: ReproPack/repropack-python
+          path: repropack-python
+          ref: ${{ steps.refs.outputs.python_ref }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: repropack-typescript/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Record exact revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo "Core: $(git rev-parse HEAD)"
+            echo "TypeScript: $(git -C repropack-typescript rev-parse HEAD)"
+            echo "Python: $(git -C repropack-python rev-parse HEAD)"
+          } | tee release-conformance-revisions.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Build TypeScript implementation
+        working-directory: repropack-typescript
+        run: npm ci && npm run build
+      - name: Install Python implementation
+        working-directory: repropack-python
+        run: python -m pip install --no-deps -e .
+      - name: Run the complete directed matrix
+        env:
+          REPROPACK_TYPESCRIPT: ${{ github.workspace }}/repropack-typescript
+          REPROPACK_PYTHON_PROJECT: ${{ github.workspace }}/repropack-python
+          REPROPACK_PYTHON: python
+        run: node scripts/phase8_interop.mjs
+      - name: Upload revision evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-conformance-${{ matrix.os }}
+          path: release-conformance-revisions.txt
+          if-no-files-found: error
+          retention-days: 30

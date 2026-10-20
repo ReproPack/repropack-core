@@ -1,0 +1,58 @@
+name: failure-evidence
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - name: Install ReproPack CLI
+        run: cargo install --git https://github.com/ReproPack/repropack-core --tag v0.1.1 --locked
+      - name: Select safe evidence
+        run: |
+          mkdir -p repropack-evidence
+          printf 'workflow=%s\ncommit=%s\n' \
+            '${{ github.event.workflow_run.name }}' \
+            '${{ github.event.workflow_run.head_sha }}' \
+            > repropack-evidence/run.txt
+          git diff --check > repropack-evidence/diff-check.txt || true
+      - name: Build a manifest for selected files
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          path = Path("repropack-evidence/run.txt")
+          data = path.read_bytes()
+          manifest = {
+              "bundle_id": "11111111-1111-4111-8111-111111111111",
+              "capture": {"mode": "explicit", "tool": {"name": "github-actions-example", "version": "0.1.1"}},
+              "created_at": "2026-01-01T00:00:00Z",
+              "evidence": [{"kind": "text", "media_type": "text/plain", "path": "evidence/run.txt", "redaction": {"status": "none"}, "selection": "explicit", "sha256": hashlib.sha256(data).hexdigest(), "size": len(data)}],
+              "format": "repropack",
+              "spec_version": "0.1",
+          }
+          Path("manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+          PY
+      - name: Create, validate, and verify bundle
+        run: |
+          repropack-core capture manifest.json failure.rpk evidence/run.txt=repropack-evidence/run.txt
+          repropack-core validate failure.rpk
+          repropack-core verify failure.rpk
+      - name: Upload validated evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: repropack-${{ github.event.workflow_run.head_sha }}
+          path: failure.rpk
+          if-no-files-found: error
+          retention-days: 7
