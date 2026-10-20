@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 
 const path = new URL("../docs/CI_INTEGRATION.md", import.meta.url);
-const source = await readFile(path, "utf8");
+const source = (await readFile(path, "utf8")).replaceAll("\r\n", "\n");
 
 const required = [
   "workflow_run:",
