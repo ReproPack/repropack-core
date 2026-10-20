@@ -39,7 +39,7 @@ Use `repropack-core` as the lead project. The TypeScript and Python repositories
 | Item | State |
 | --- | --- |
 | Format, implementations, fixtures, and CI | Completed and verified within the documented scope |
-| v0.1.1 release | Prepared locally; unpublished and owner-controlled |
+| v0.1.1 release | GitHub, npm, and PyPI releases published and verified; crates.io remains pending |
 | Drips Project claim | Not performed; requires wallet and `FUNDING.json` decision |
 | Drips Wave repository approval | Unknown; requires application/appeal status check |
 | RetroPGF round eligibility | Unknown until a specific open Registration round is identified |

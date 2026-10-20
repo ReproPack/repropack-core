@@ -66,7 +66,7 @@ Verified facts:
 - Core, TypeScript, and Python main branches are clean and synchronized at the reviewed corrected commits.
 - All three hosted CI workflows passed, including Core's Ubuntu/Windows validator, Rust, and 12-path interoperability matrix.
 - Existing local v0.1.0 tags target pre-correction commits. GitHub reports no remote tags and no Releases for these repositories.
-- Core cargo publish dry-run passes. Python artifacts build and install in hosted CI. TypeScript package validation passes, but private: true remains set.
+- Core cargo publish dry-run passes. Python `repropack==0.1.1` and TypeScript `repropack-typescript@0.1.1` were published and verified with clean installations.
 
 Recommendations:
 
@@ -76,10 +76,9 @@ Recommendations:
 
 Owner decisions required:
 
-- crates.io and PyPI publication approval, publisher credentials, and name confirmation.
-- Whether TypeScript becomes public; if yes, approval to change private: true and finalize package entry points/files.
+- crates.io publication approval and publisher credentials.
 - GitHub Release creation and final artifact contents.
 
 ## v0.1.1 preparation note
 
-The corrected coordinated snapshot is released as v0.1.1 on GitHub. The existing v0.1.0 tags remain unchanged. Core, TypeScript, and Python release assets were built locally and uploaded with SHA-256 checksum files. crates.io and PyPI publication remain unperformed because publisher credentials were not configured; npm remains intentionally private.
+The corrected coordinated snapshot is released as v0.1.1 on GitHub. The existing v0.1.0 tags remain unchanged. Core, TypeScript, and Python release assets were built locally and uploaded with SHA-256 checksum files. PyPI and npm publication are complete and verified; crates.io remains unperformed pending publisher credentials.

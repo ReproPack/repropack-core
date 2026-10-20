@@ -20,7 +20,8 @@ The v0.1.1 local release candidate is supported by [FINAL_AUDIT.md](FINAL_AUDIT.
 - [x] Historical local v0.1.0 tags were preserved; corrected code was released as v0.1.1.
 - [x] v0.1.1 tags were created on the exact release commits and pushed.
 - [x] Release notes, artifacts, SHA-256 checksums, and GitHub Release contents are published and verified.
-- [ ] crates.io and PyPI publication: dry-run/build evidence passes, but publisher credentials and owner approval are still absent; npm remains blocked by its `private: true` setting and entry-point decision.
+- [x] PyPI publication is complete and verified for `repropack==0.1.1`; npm publication is complete and verified for `repropack-typescript@0.1.1`.
+- [ ] crates.io publication: dry-run passes, but publisher credentials and owner approval are still required.
 
 ## Funding-readiness gates
 

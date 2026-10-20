@@ -37,4 +37,4 @@ The ReproPack specification remains version 0.1. Readers reject unsupported vers
 
 ## Publication status
 
-This coordinated release is tagged `v0.1.1` in all three repositories and published as GitHub Releases with checksum-verified assets. crates.io and PyPI publication remain pending publisher credentials and owner approval. npm publication remains blocked while the package is private and its public entry-point configuration is undecided.
+This coordinated release is tagged `v0.1.1` in all three repositories and published as GitHub Releases with checksum-verified assets. PyPI publication is complete for `repropack==0.1.1`, and npm publication is complete for `repropack-typescript@0.1.1`. crates.io publication remains pending publisher credentials and owner approval.
