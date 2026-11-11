@@ -18,6 +18,20 @@ This is the coordination and reference repository. It owns the [normative specif
 
 The format is transport, not execution. Bundles are not replay recipes, do not reconstruct environments, and are never executed by the CLI.
 
+## What ReproPack captures—and what it does not
+
+ReproPack captures explicitly selected failure evidence: a manifest, provenance, bounded evidence bytes, integrity digests, limits, and redaction metadata. It is intended for maintainers and bug reporters who need a portable artifact that can be inspected by another tool or language implementation.
+
+It does not capture an entire workspace by default, infer a complete dependency graph, guarantee that secrets were removed, reconstruct a runtime environment, provide a sandbox, or replay the failure. Any integration must select its inputs explicitly and review the resulting bundle before sharing it.
+
+## Interoperability evidence
+
+The shared semantic catalog and recorded Phase 8 workflow exercise all 12 directed producer/consumer paths across Rust, TypeScript, and Python for the minimal and redacted fixtures. The comparison covers manifest meaning, evidence bytes, sizes, hashes, redaction state, and expected failure categories. See the [conformance guide](docs/CONFORMANCE.md) for the exact scope and limitations; this evidence does not certify arbitrary future implementations or every possible archive input.
+
+## Sharing and security checklist
+
+Before publishing a bundle, review selected paths and provenance, remove or explicitly redact credentials and personal data, verify the bundle, and keep retention bounded. Treat manifests and evidence as untrusted input. Secret detection is advisory rather than complete, and bundle contents must never be executed as part of inspection or extraction.
+
 ## Architecture
 
 <p align="center"><img src="docs/architecture.svg" alt="ReproPack architecture: one language-neutral format with Rust, TypeScript, and Python implementations" width="900"></p>
